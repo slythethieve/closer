@@ -1,0 +1,29 @@
+{
+  "name": "closer",
+  "version": "1.0.0",
+  "description": "Project Management App with React tailored to the family's small businesses",
+  "main": "server.js",
+  "scripts": {
+    "start" : "node backend/server.js",
+    "server" : "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slythethieve/closer.git"
+  },
+  "author": "Matteo De Sabato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slythethieve/closer/issues"
+  },
+  "homepage": "https://github.com/slythethieve/closer#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
