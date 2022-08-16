@@ -1,14 +1,15 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
+const { errorHandler} = require('./middleware/errorMiddleware')
 const port = process.env.PORT
 
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false}))
 
-app.get('/api/orders', (req, res) => {
-    res.json({
-        message: "Get orders"
-    })
-})
+
+
+app.use('/api/orders', require('./routes/orderRoutes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`))
