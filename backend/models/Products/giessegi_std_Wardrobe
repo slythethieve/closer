@@ -1,0 +1,34 @@
+const mongoose = require('mongoose')
+
+const giessegi_std_Wardrobe = mongoose.Schema({
+    roomName: {
+        type: String,
+    },
+    article: {
+        type: String,
+        required: [true, 'Please input the wardrobe article']
+    },
+    finish: {
+        type: String,
+        required: [true, 'Please add the wardrobe finish']
+    },
+    width: {
+        type: Number,
+        required: [true, 'Please add width']
+    },
+    height: {
+        type: Number,
+        required: [true, 'Please add height']
+    },
+    depth: {
+        type: Number,
+        required: [true, 'Please add depth']
+    },
+    accessories: {
+        type: String
+    },
+    notes: {
+        type: String
+    }
+
+})
