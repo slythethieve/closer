@@ -32,11 +32,10 @@ const clientInfoSchema = mongoose.Schema({
         required: [true, 'Please enter an email adress'],
     },
     quotes: {
-        type: [Schema.Types.ObjectId],
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'quoteModel'
     },
     
 })
 
-const clientInfoModel = mongoose.Model('clientInfoModel', clientInfoSchema)
-export default clientInfoModel
+module.exports = mongoose.model('clientInfoModel', clientInfoSchema)

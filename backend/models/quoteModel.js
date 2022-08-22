@@ -11,5 +11,4 @@ const quoteSchema = mongoose.Schema({
     },
 })
 
-const quoteModel = mongoose.Model('quoteModel', quoteSchema)
-export default quoteModel
+module.exports = mongoose.model('quoteModel', quoteSchema)

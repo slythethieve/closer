@@ -31,10 +31,9 @@ const giesStdWardSchema = mongoose.Schema({
         type: String
     },
     quote: {
-        type: [Schema.Types.ObjectId],
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'quoteModel'
     }
 
 })
-const giesStdWardModel = mongoose.Model('gies_std_Ward_Model', giesStdWardSchema)
-export default giesStdWardModel
+module = mongoose.model('gies_std_Ward_Model', giesStdWardSchema)
