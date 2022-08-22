@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const giessegi_std_Wardrobe = mongoose.Schema({
+const giesStdWardSchema = mongoose.Schema({
     roomName: {
         type: String,
     },
@@ -29,6 +29,12 @@ const giessegi_std_Wardrobe = mongoose.Schema({
     },
     notes: {
         type: String
+    },
+    quote: {
+        type: [Schema.Types.ObjectId],
+        ref: 'quoteModel'
     }
 
 })
+const giesStdWardModel = mongoose.Model('gies_std_Ward_Model', giesStdWardSchema)
+export default giesStdWardModel
