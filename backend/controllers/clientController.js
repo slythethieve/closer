@@ -15,14 +15,30 @@ const getClients = asyncHandler(async (req, res) => {
 // @route   POST /api/clients
 // @access  Private
 const setClient = asyncHandler(async (req, res) => {
-
-  //TODO: Test if this really makes a difference having it. 
-  // I think it is needed to send out an error from our end instead 
-  // of the database maybe. 
-  //if (!req.body.firstName) {
-  //  res.status(400)
-  //  throw new Error('Please add a name')
-  //}
+  if (!req.body.firstName) {
+    res.status(400)
+    throw new Error('Please add a name')
+  }
+  if (!req.body.firstName) {
+    res.status(400)
+    throw new Error('Please add a first name')
+  }
+  if (!req.body.lastName) {
+    res.status(400)
+    throw new Error('Please add a öast name')
+  }
+  if (!req.body.homeAdressStreet) {
+    res.status(400)
+    throw new Error('Please add the street')
+  }
+  if (!req.body.homeAdressNumber) {
+    res.status(400)
+    throw new Error('Please add the house number')
+  }
+  if (!req.body.city) {
+    res.status(400)
+    throw new Error('Please add the city')
+  }
 
   const client = await Client.create({
     firstName: req.body.firstName,
@@ -32,7 +48,8 @@ const setClient = asyncHandler(async (req, res) => {
     PLZ: req.body.PLZ,
     city: req.body.city,
     phoneNumber: req.body.phoneNumber,
-    email: req.body.email
+    email: req.body.email,
+    quote: req.body.quote
   })
   res.status(200).json(client)
 })
@@ -58,7 +75,15 @@ const updateClient = asyncHandler(async (req, res) => {
 // @route   DELETE /api/clients/:id
 // @access  Private
 const deleteClient = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Delete client ${req.params.id}` })
+  const client = await Client.findById(req.params.id)
+  if(!client) {
+    res.status(400)
+    throw new Error('Client not found')
+  }
+  await client.remove()
+  res.status(200).json({
+    id: req.params.id
+  })
 })
 
 module.exports = {
