@@ -1,10 +1,36 @@
-# Getting Started with Create React App and Redux
+# Portfolio project #1: closer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Short summary
 
-## Available Scripts
+closer is a React application currently used at my family's businesses to greatly improve our workflow and reduce errors. 
 
-In the project directory, you can run:
+Built using the MERN stack (MongoDB, Express, React, NodeJS). 
+
+## Technologies used 
+
+This project was created using the following technologies:
+
+Client
+
+- React JS
+- Redux (for managing and centralizing application state)
+- React-router-dom (To handle routing)
+- Axios (for making api calls)
+
+Server
+
+- Express
+- Mongoose
+- JWT (For authentication)
+- bcryptjs (for data encryption)
+
+Database
+
+- MongoDB (MongoDB Atlas)
+
+## Author
+
+Matteo De Sabato
 
 ### `npm start`
 
