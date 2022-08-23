@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const clientInfoSchema = mongoose.Schema({
+const clientSchema = mongoose.Schema({
     firstName: {
         type: String,
         required: [true, 'Please enter a name']
@@ -33,9 +33,9 @@ const clientInfoSchema = mongoose.Schema({
     },
     quotes: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'quoteModel'
+        ref: 'Quote'
     },
     
 })
 
-module.exports = mongoose.model('clientInfoModel', clientInfoSchema)
+module.exports = mongoose.model('Client', clientSchema)
