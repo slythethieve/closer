@@ -1,4 +1,9 @@
 import "./sidebar.scss"
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddIcon from '@mui/icons-material/Add';
+import StorageIcon from '@mui/icons-material/Storage';
+import PeopleIcon from '@mui/icons-material/People';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Sidebar() {
   return (
@@ -10,20 +15,31 @@ function Sidebar() {
         <div className="center">
             <ul>
                 <li>
+                    <DashboardIcon className="icon"/>
                     <span>Dashboard</span>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <AddIcon className="icon"/>
+                    <span>Nuova offerta</span>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <StorageIcon className="icon"/>
+                    <span>Ordini</span>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <PeopleIcon className="icon"/>
+                    <span>Clienti</span>
+                </li>
+                <li>
+                    <LogoutIcon className="icon"/>
+                    <span>Logout</span>
                 </li>
             </ul>
         </div>
-        <div className="bottom">color options</div>
+        <div className="bottom">
+            <div className="colorOption"></div>
+            <div className="colorOption"></div>
+        </div>
     
     
     
