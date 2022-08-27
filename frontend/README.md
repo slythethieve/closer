@@ -16,6 +16,7 @@ Client
 - Redux (for managing and centralizing application state)
 - React-router-dom (To handle routing)
 - Axios (for making api calls)
+- Sass
 
 Server
 

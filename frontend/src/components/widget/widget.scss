@@ -3,8 +3,8 @@
     justify-content: space-between;
     flex: 1;
     padding: 10px;
-    -webkit-box-shadow: 7px 10px 16px 0px rgba(255,109,14,0.71); 
-    box-shadow: 7px 10px 16px 0px rgba(255,109,14,0.71);
+    -webkit-box-shadow: 9px 6px 19px -2px rgba(243,174,96,0.48); 
+    box-shadow: 9px 6px 19px -2px rgba(243,174,96,0.48); 
     border-radius: 10px;
     height: 150px;
 
@@ -32,6 +32,7 @@
         }
 
         .percentage{
+            width:max-content;
             display: flex;
             align-items: center;
             font-size: 14px;
