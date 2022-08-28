@@ -1,7 +1,6 @@
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { orange } from '@mui/material/colors';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css"
 
@@ -10,6 +9,10 @@ import "./featuredChart.scss"
 // One idea would be to use a dynamic progress bar to show 
 // how close we are in percentage to last month's revenue. Or the revenue
 // from the same month last year. 
+
+// Following the tutorial I have a summary section below, which I'm not
+// sure I'm going to use. I'll follow it anyway, maybe some ideas will
+// pop into my mind. 
 function FeaturedChart() {
   return (
     <div className="featured">
@@ -35,9 +38,31 @@ function FeaturedChart() {
         <div className='summary'>
           <div className='item'>
               <div className='itemTitle'>
-                Target
-                <div className='itemResult'>
+                Target mensile
+                <div className='itemResult negative'>
                   <KeyboardArrowDownIcon fontSize='small'/>
+                  <div className='resultAmount'>
+                  CHF. 20000
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div className='item'>
+              <div className='itemTitle'>
+                Target annuale
+                <div className='itemResult positive'>
+                  <KeyboardArrowUpIcon fontSize='small'/>
+                  <div className='resultAmount'>
+                  CHF. 20000
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div className='item'>
+              <div className='itemTitle'>
+                Target del non lo so
+                <div className='itemResult positive'>
+                  <KeyboardArrowUpIcon fontSize='small'/>
                   <div className='resultAmount'>
                   CHF. 20000
                   </div>

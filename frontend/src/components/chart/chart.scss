@@ -1,3 +1,19 @@
 .chart{
     flex: 3;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 9px 6px 19px -2px rgba(243,174,96,0.48); 
+    box-shadow: 9px 6px 19px -2px rgba(243,174,96,0.48);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    
+
+    .title{
+        font-size: 16px;
+        width:max-content;
+        font-weight: 500;
+        color: grey;
+        margin-bottom: 20px;
+    }
 }
