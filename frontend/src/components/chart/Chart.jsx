@@ -42,7 +42,7 @@ function Chart() {
       <div className="title">Fatturato ditte ultimi 6 mesi</div>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart width={730} height={250} data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          margin={{ top: 30, right: 30, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="colorGood" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#FFA246" stopOpacity={0.8}/>
@@ -54,8 +54,8 @@ function Chart() {
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
+          <YAxis label={{value:"CHF", position:"top", dy: -10, dx:10}}  />
+          <CartesianGrid strokeDasharray="3 3" className="chartsGrid"/>
           <Tooltip />
           <Area type="monotone" dataKey="goodlinee" stroke="#8884d8" fillOpacity={1} fill="url(#colorGood)" />
           <Area type="monotone" dataKey="euroMoebel" stroke="#000000" fillOpacity={1} fill="url(#colorEuro)" />
