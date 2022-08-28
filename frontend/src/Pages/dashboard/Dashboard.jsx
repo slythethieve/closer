@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar"
 import Widget from "../../components/widget/Widget"
 import FeaturedChart from "../../components/featuredChart/FeaturedChart"
 import Chart from "../../components/chart/Chart"
+import TableComponent from "../../components/table/TableComponent"
 import "./dashboard.scss"
 
 
@@ -21,6 +22,9 @@ function Dashboard() {
         <div className="charts">
           <FeaturedChart />
           <Chart />
+        </div>
+        <div className="listContainer">
+          <TableComponent />
         </div>
       </div>
     </div>

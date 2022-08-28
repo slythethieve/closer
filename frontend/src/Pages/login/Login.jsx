@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // Not sure if I'm going to use it
 //import { toast } from 'react-toastify'
-import { login, reset } from '../features/auth/authSlice'
+import { login, reset } from '../../features/auth/authSlice'
 // Not sure if I'm going to use this spinner either.
 //import Spinner from '../components/Spinner'
 
+
+import './login.scss'
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -59,11 +61,8 @@ function Login() {
   }
 
   return (
-    <>
+    <div className='login'>
       <section className='heading'>
-        <h1>
-          Login
-        </h1>
         <p>Login to access closer</p>
       </section>
 
@@ -99,7 +98,7 @@ function Login() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 
