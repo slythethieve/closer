@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Dashboard from './Pages/dashboard/Dashboard';
 import Login from './Pages/login/Login';
 import List from './Pages/list/List';
+import Invoice from './Pages/forms/Invoice';
 
 
 
@@ -16,6 +17,7 @@ function App() {
             <Route path='/orders'>
               <Route index element={<List />} />
             </Route>
+            <Route path='/new' element= {<Invoice />} />
             
           </Routes>
         </div>

@@ -9,13 +9,9 @@ const clientSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please enter a last name']
     },
-    homeAdressStreet: {
+    adress: {
         type: String,
         required: [true, 'Please enter an adress']
-    },
-    homeAdressNumber: {
-        type: Number,
-        required: [true, 'Please enter a the house number']
     },
     PLZ: {
         type: Number

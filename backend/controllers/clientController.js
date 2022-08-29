@@ -27,13 +27,9 @@ const setClient = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('Please add a öast name')
   }
-  if (!req.body.homeAdressStreet) {
+  if (!req.body.adress) {
     res.status(400)
     throw new Error('Please add the street')
-  }
-  if (!req.body.homeAdressNumber) {
-    res.status(400)
-    throw new Error('Please add the house number')
   }
   if (!req.body.city) {
     res.status(400)
@@ -43,8 +39,7 @@ const setClient = asyncHandler(async (req, res) => {
   const client = await Client.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    homeAdressStreet: req.body.homeAdressStreet,
-    homeAdressNumber: req.body.homeAdressNumber,
+    adress: req.body.adress,
     PLZ: req.body.PLZ,
     city: req.body.city,
     phoneNumber: req.body.phoneNumber,
