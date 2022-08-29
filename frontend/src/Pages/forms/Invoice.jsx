@@ -21,6 +21,12 @@ const Invoice = () => {
     // form
     const onClick = event => {
         event.preventDefault()
+
+
+        // Maybe do switch case here instead of a bunch of
+        // ifs statements
+
+
         // let newField;
         // if (event.target.name === "arm_std") {
         //     newField = <Giessegi_Normal_Wardrobe_Component key={unique_id()}/>
@@ -40,43 +46,34 @@ const Invoice = () => {
         for (let i = 0; i < target.length; i++) {
             formData[target.elements[i].getAttribute("name")] = target.elements[i].value
         }
-        dispatch(createClient(formData))
+        console.log(target.name)
+        console.log('formData', formData)
+        //dispatch(createClient(formData))
         
     }
 
     // If this approach works I really need to add unique ids for each form
     return (
-        <div className='container'
-            >
-            <form 
-                onSubmit={onSubmit} 
-                >
+        <div className='container'>
+            <form onSubmit={onSubmit}>
                 <Adress_Form />
-                
                 {inputFields.map(item => (
-                    <div 
-                        >{item}</div>
+                    <div>{item}</div>
                 ))}
-                <input 
-                    type="submit"
-                    ></input>
+                <input type="submit"></input>
             </form>
             <button
-                
                 onClick = {onClick}
                 className='btn' 
                 name="arm_std">Armadio Standard</button>
             <button 
-                
                 onClick = {onClick}
                 className='btn' 
                 name="arm_nic">Armadio in Nicchia</button>
             <button 
-                
                 onClick = {onClick}
                 className='btn'>Armadio Mansardato</button>
             <button 
-                
                 onClick = {onClick}
                 className='btn'>Armadio Scorrevole</button>
         </div>
