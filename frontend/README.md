@@ -16,7 +16,9 @@ Client
 - Redux (for managing and centralizing application state)
 - React-router-dom (To handle routing)
 - Axios (for making api calls)
-- Sass
+- Sass (for styling)
+- Material UI (Icons, Tables)
+- Recharts (for charts)
 
 Server
 
