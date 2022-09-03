@@ -2,56 +2,56 @@
 const Adress_Form = () => {
     
     return (
-        <div className="add-form" id="adress">
-            <div className="form-control">
-                <label>Nome</label>
+        <div className="add-form" id="clientInfo">
+            <div className="form-control" name="firm">
+                <label id='firstName'>Nome</label>
                 <input 
                     type = 'text' 
                     placeholder = "Nome"
-                    name="firstName"/>
+                    id="firstName"/>
             </div>
             <div className="form-control">
-                <label>Cognome</label>
+                <label id='lastName'>Cognome</label>
                 <input 
                     type = 'text' 
                     placeholder = "Cognome"
-                    name="lastName"/>
+                    id="lastName"/>
 
             </div>
             <div className="form-control">
-                <label>Indirizzo</label>
+                <label id='address'>Indirizzo</label>
                 <input 
                     type = 'text' 
                     placeholder = "Indirizzo"
-                    name="adress"/>
+                    id="adress"/>
             </div>
             <div className="form-control">
-                <label>CAP</label>
+                <label id='plz'>CAP</label>
                 <input 
                     type = 'number' 
                     placeholder = "CAP"
-                    name="PLZ"/>
+                    id="PLZ"/>
             </div>
             <div className="form-control">
-                <label>Città</label>
+                <label id='city'>Città</label>
                 <input 
                     type = 'text' 
                     placeholder = "Città"
-                    name="city"/>
+                    id="city"/>
             </div>
             <div className="form-control">
-                <label>Numero di Telefono</label>
+                <label id='phone'>Numero di Telefono</label>
                 <input 
                     type = 'tel' 
                     placeholder = "0761234567"
-                    name="phoneNumber"/>
+                    id="phoneNumber"/>
             </div>
             <div className="form-control">
-                <label>Email</label>
+                <label id='email'>Email</label>
                 <input 
                     type = 'email' 
                     placeholder = "123@gmail.com"
-                    name="email"/>
+                    id="email"/>
 
             </div>
         </div>

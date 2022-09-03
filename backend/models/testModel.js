@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const quoteSchema = mongoose.Schema({
+const testSchema = mongoose.Schema({
     clientInfo: {
         type: Array
     },
@@ -12,4 +12,4 @@ const quoteSchema = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model('Quote', quoteSchema)
+module.exports = mongoose.model('Test', testSchema)
