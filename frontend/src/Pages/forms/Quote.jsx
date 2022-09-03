@@ -2,40 +2,32 @@ import { useState } from 'react';
 import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
 import { createQuote } from '../../features/quote/quoteSlice';
-import TestForm from './StandardWardrobe'
+import StandardWardrobe from './StandardWardrobe'
 
 
-const Invoice = () => {
+const Quote = () => {
     // Test
     const dispatch = useDispatch()
-    const clientData = {
+    const quoteData = {
         firstName: "",
         lastName: "",
 
     }
 
     const [inputFields, setInputFields] = useState ([])
-    // Ok so now I can differentiate between the different orders. 
-    // There might be a better way to do this but I have no idea how
-    // yet. I can differentiate it by giving a name to a button and
-    // then checking for that name inside here. I then show the corresponding
-    // form
     const onClick = event => {
         event.preventDefault()
 
 
         // Maybe do switch case here instead of a bunch of
         // ifs statements
-
-         let counter = 1
-         let newField;
+         let newProduct;
          if (event.target.name === "arm_std") {
-             newField = <TestForm key = {counter}/>
-             counter++
+             newProduct = <StandardWardrobe />
          }else {
-            newField = <Adress_Form />
+            newProduct = <Adress_Form />
          }
-         setInputFields([...inputFields, newField])
+         setInputFields([...inputFields, newProduct])
         
     }
 
@@ -52,7 +44,7 @@ const Invoice = () => {
         //console.log('formData', formData)
 
         let clientInfoData = []
-        let products = [{}]
+        let products = []
 
 
 
@@ -77,8 +69,18 @@ const Invoice = () => {
                 [clientInfo.childNodes[i].childNodes[1].id]: clientInfo.childNodes[i].childNodes[1].value
             })
         }
+
+        const productInfo = document.getElementById("products")
+        console.log(productInfo.childNodes[0].childNodes[0].childNodes[1])
+        for (let i= 1; i < productInfo.childNodes[0].childNodes[0].childNodes.length; i++) {
+            products.push({
+                [productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].id]: productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].value
+            })
+        }
         let str = JSON.stringify(clientInfoData)
+        let str2 = JSON.stringify(products)
         console.log(str)
+        console.log(str2)
 
         
         
@@ -119,4 +121,4 @@ const Invoice = () => {
         </div>
     )
 }
-export default Invoice
+export default Quote

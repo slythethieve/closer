@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler')
-
 const Quote = require('../models/quoteModel')
 
 // @desc    Get quotes
@@ -16,7 +15,8 @@ const getQuotes = asyncHandler(async (req, res) => {
 const setQuote = asyncHandler(async (req, res) => {
 
   const quote = await Quote.create({
-    totalPrice: req.body.totalPrice,
+    clientInfo: req.body.clientInfo,
+    products: req.body.products
   })
   res.status(200).json(quote)
 })

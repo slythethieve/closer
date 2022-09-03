@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice'
 
-// Testing stuff out
-import testReducer from '../features/test/testSlice'
+import quoteReducer from '../features/quote/quoteSlice'
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    clients: testReducer
+    quotes: quoteReducer
   },
 });

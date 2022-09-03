@@ -3,6 +3,7 @@ import Dashboard from './Pages/dashboard/Dashboard';
 import Login from './Pages/login/Login';
 import List from './Pages/list/List';
 import Invoice from './Pages/forms/Invoice';
+import Quote from './Pages/forms/Quote'
 
 
 
@@ -17,7 +18,7 @@ function App() {
             <Route path='/orders'>
               <Route index element={<List />} />
             </Route>
-            <Route path='/new' element= {<Invoice />} />
+            <Route path='/new' element= {<Quote />} />
             
           </Routes>
         </div>

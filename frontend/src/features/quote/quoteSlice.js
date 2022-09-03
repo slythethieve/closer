@@ -1,20 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import testService from './testService'
+import quoteService from './quoteService'
 
 const initialState = {
-    clients: [],
+    quote: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: '',
 }
 
-// Create a new client
-export const createClient = createAsyncThunk('clients/create',
-    async (clientData, thunkAPI) => {
+// Create a new quote
+export const createQuote = createAsyncThunk('quotes/create',
+    async (quoteData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
-            return await testService.createClient(clientData, token)
+            return await quoteService.createQuote(quoteData, token)
           } catch (error) {
             const message =
               (error.response &&
@@ -26,28 +26,28 @@ export const createClient = createAsyncThunk('clients/create',
           }
     })
 
-    export const testSlice = createSlice({
-        name: 'client',
+    export const quoteSlice = createSlice({
+        name: 'quote',
         initialState,
         reducers: {
           reset: (state) => initialState,
         },
         extraReducers: (builder) => {
           builder
-            .addCase(createClient.pending, (state) => {
+            .addCase(createQuote.pending, (state) => {
               state.isLoading = true
             })
-            .addCase(createClient.fulfilled, (state, action) => {
+            .addCase(createQuote.fulfilled, (state, action) => {
               state.isLoading = false
               state.isSuccess = true
               state.clients.push(action.payload)
             })
-            .addCase(createClient.rejected, (state, action) => {
+            .addCase(createQuote.rejected, (state, action) => {
               state.isLoading = false
               state.isError = true
               state.message = action.payload
             })
         }
     })
-    export default testSlice.reducer
-    export const {reset} = testSlice.actions
+    export default quoteSlice.reducer
+    export const {reset} = quoteSlice.actions
