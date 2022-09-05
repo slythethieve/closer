@@ -2,69 +2,35 @@ import { useState } from 'react';
 import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
 import { createQuote } from '../../features/quote/quoteSlice';
-import StandardWardrobe from './StandardWardrobe'
+import StandardWardrobe from './products/StandardWardrobe'
 import unique_key from '../../utils/unique_key';
 
 
 const Quote = () => {
-    // Test
+
     const dispatch = useDispatch()
-    const quoteData = {
-        firstName: "",
-        lastName: "",
-
-    }
-
-    const [inputFields, setInputFields] = useState ([])
+    
+    const [formFields, setFormFields] = useState ([])
     const onClick = event => {
         event.preventDefault()
 
-
-        // Maybe do switch case here instead of a bunch of
-        // ifs statements
-         let newProduct;
-         if (event.target.name === "arm_std") {
-             newProduct = <StandardWardrobe />
-         }else {
-            newProduct = <Adress_Form />
-         }
-         setInputFields([...inputFields, newProduct])
-        
+        let newProduct;
+        switch (event.target.name) {
+            case "arm_std":
+                newProduct = <StandardWardrobe />
+                break
+            
+        }
+        setFormFields([...formFields, newProduct])
     }
 
-    // Ok I can pass down this on submit as a prop to the adress form 
-    // and correctly log whatever i type in . 
     const onSubmit = (event) => {
         event.preventDefault()
-        let target = event.target
         let formData = {}
-        //for (let i = 0; i < target.length; i++) {
-        //    formData[target.elements[i].getAttribute("name")] = target.elements[i].value
-        //}
-        //console.log(target.elements)
-        //console.log('formData', formData)
-
         let clientInfoData = []
-        let products = []
-
-
-
-        // Maybe something to useful in these 2 lines of code. Honestly does not not look clean at all. 
-        // In theory like this I can differentiate between each one of the forms. 
-        // The nwxt question to answer is how to put these things in the database depending on which approach you want to use. 
-        
-        //const test = document.getElementById("testing")
-        // I can also get it by the name. Maybe as this name suggests this can potentially return multiple elements with a name. 
-        //const test2 = document.getElementsByName("firm")
-        //console.log(test.firstChild.childNodes.item(1).value)
-
-        
-
-
-        // HOLY SHIT IT FUCKING WORKS. I CANNOT BELIEVE THIS!!!! NOW NEED TO WORK VERY CAREFULLY TO MAKE THIS ALL PRETTY-
-        // RIGHT IT'S A BIG MESS. ONE THING TO CHANGE IS REMOVE IDS FROM LABEL INSIDE THE FORMS. JUST NEED THE IDS IN THE INPUT FIELDS. 
+        let productsInfoData = []
+ 
         const clientInfo = document.getElementById("clientInfo")
-        //console.log(clientInfo.childNodes[0].childNodes[0].id)
         for (let i= 0; i < clientInfo.childNodes.length; i++) {
             clientInfoData.push({
                 [clientInfo.childNodes[i].childNodes[1].id]: clientInfo.childNodes[i].childNodes[1].value
@@ -72,41 +38,35 @@ const Quote = () => {
         }
 
         const productInfo = document.getElementById("products")
-        //console.log(productInfo.childNodes[0].childNodes[0].childNodes[1])
-
-        // Here I still need an outer loop to loop through all of the products. 
-        for (let i= 1; i < productInfo.childNodes[0].childNodes[0].childNodes.length; i++) {
-            products.push({
-                [productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].id]: productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].value
-            })
+        try {
+            for (let j = 0; j < productInfo.childNodes.length; j++) {
+                for (let i= 1; i < productInfo.childNodes[j].childNodes[0].childNodes.length; i++) {
+                    productsInfoData.push({
+                    [productInfo.childNodes[j].childNodes[0].childNodes[i].childNodes[1].id]: productInfo.childNodes[j].childNodes[0].childNodes[i].childNodes[1].value
+                    })
+                }
+            }
+        } catch (error) {
+            console.log(error)
+            
         }
-        let str = JSON.stringify(clientInfoData)
-        let str2 = JSON.stringify(products)
-        //console.log(str)
-        //console.log(str2)
+        
+        let clientInfoDataPretty = JSON.stringify(clientInfoData)
+        let productsInfoDataPretty = JSON.stringify(productsInfoData)
+        formData["clientInfo"] = clientInfoDataPretty
+        formData["products"] = productsInfoDataPretty
 
         
-
-        formData["clientInfo"] = str
-        formData["products"] = str2
-
-        
-        
-        //console.log(test2)
         //dispatch(createQuote(formData))
-
-
-        // Maybe start by using an array like formdata. 
         
     }
 
-    // If this approach works I really need to add unique ids for each form
     return (
         <div className='container'>
             <form onSubmit={onSubmit}>
                 <Adress_Form />
                 <div id = 'products' key ={unique_key()}>
-                {inputFields.map(item => (
+                {formFields.map(item => (
                     <div key ={unique_key()}>{item}</div>
                 ))}
                 </div>
