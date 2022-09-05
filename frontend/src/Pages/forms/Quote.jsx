@@ -3,6 +3,7 @@ import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
 import { createQuote } from '../../features/quote/quoteSlice';
 import StandardWardrobe from './StandardWardrobe'
+import unique_key from '../../utils/unique_key';
 
 
 const Quote = () => {
@@ -71,7 +72,9 @@ const Quote = () => {
         }
 
         const productInfo = document.getElementById("products")
-        console.log(productInfo.childNodes[0].childNodes[0].childNodes[1])
+        //console.log(productInfo.childNodes[0].childNodes[0].childNodes[1])
+
+        // Here I still need an outer loop to loop through all of the products. 
         for (let i= 1; i < productInfo.childNodes[0].childNodes[0].childNodes.length; i++) {
             products.push({
                 [productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].id]: productInfo.childNodes[0].childNodes[0].childNodes[i].childNodes[1].value
@@ -79,13 +82,18 @@ const Quote = () => {
         }
         let str = JSON.stringify(clientInfoData)
         let str2 = JSON.stringify(products)
-        console.log(str)
-        console.log(str2)
+        //console.log(str)
+        //console.log(str2)
+
+        
+
+        formData["clientInfo"] = str
+        formData["products"] = str2
 
         
         
         //console.log(test2)
-        //dispatch(createClient(formData))
+        //dispatch(createQuote(formData))
 
 
         // Maybe start by using an array like formdata. 
@@ -97,9 +105,9 @@ const Quote = () => {
         <div className='container'>
             <form onSubmit={onSubmit}>
                 <Adress_Form />
-                <div id = 'products'>
+                <div id = 'products' key ={unique_key()}>
                 {inputFields.map(item => (
-                    <div>{item}</div>
+                    <div key ={unique_key()}>{item}</div>
                 ))}
                 </div>
                 <input type="submit"></input>

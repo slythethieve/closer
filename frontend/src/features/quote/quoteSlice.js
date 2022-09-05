@@ -40,7 +40,7 @@ export const createQuote = createAsyncThunk('quotes/create',
             .addCase(createQuote.fulfilled, (state, action) => {
               state.isLoading = false
               state.isSuccess = true
-              state.clients.push(action.payload)
+              state.quote.push(action.payload)
             })
             .addCase(createQuote.rejected, (state, action) => {
               state.isLoading = false

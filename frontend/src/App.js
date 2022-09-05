@@ -2,7 +2,6 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Dashboard from './Pages/dashboard/Dashboard';
 import Login from './Pages/login/Login';
 import List from './Pages/list/List';
-import Invoice from './Pages/forms/Invoice';
 import Quote from './Pages/forms/Quote'
 
 
