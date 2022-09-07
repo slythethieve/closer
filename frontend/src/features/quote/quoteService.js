@@ -15,12 +15,29 @@ const createQuote = async (quoteData, token) => {
   return response.data
 }
 
-// Update, delete and possibly get are still missing here. 
+// Update, delete are still missing here. 
 
+// Get all quotes
+const getQuotes = async (token) => {
+  const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
 
+  const response = await axios.get(API_URL, config)
+
+  
+  // So this is a way to get the object id of a an entry. Good stuff. 
+  console.log(response.data[0]._id)
+  console.log(response.data[1].products)
+
+  return response.data
+}
 
 const quoteService = {
   createQuote,
+  getQuotes
 }
 
 export default quoteService

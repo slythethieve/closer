@@ -8,12 +8,22 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
+// let's test displaying db data. starting with just the name
+import { useDispatch } from 'react-redux';
+import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
+import {useEffect} from 'react'
+
 import './table.scss'
 
 // This could be another good potential addition to the application
 // Keeping track of where we are with an order.
 const TableComponent = () => {
     
+    //testing dispatch
+    const dispatch = useDispatch()
+
+    
+
     const rows = [
         {
             id: 342342342,

@@ -26,7 +26,22 @@ export const createQuote = createAsyncThunk('quotes/create',
           }
     })
 
-    export const quoteSlice = createSlice({
+    export const getQuotes = createAsyncThunk('quotes/getAll', async (_, thunkAPI) => {
+      try {
+          const token = thunkAPI.getState().auth.user.token
+          return await quoteService.getQuotes(token)
+      } catch (error) {
+          const message = 
+          (error.response && 
+              error.response.data && 
+              error.response.data.message) 
+              || error.message || error.toString()
+  
+          return thunkAPI.rejectWithValue(message)
+      }
+  })
+
+  export const quoteSlice = createSlice({
         name: 'quote',
         initialState,
         reducers: {
@@ -47,7 +62,22 @@ export const createQuote = createAsyncThunk('quotes/create',
               state.isError = true
               state.message = action.payload
             })
+            .addCase(getQuotes.pending, (state) => {
+              state.isLoading = true
+              
+          })
+          .addCase(getQuotes.fulfilled, (state, action) => {
+              state.isLoading = false
+              state.isSuccess = true
+              state.quote = action.payload
+          })
+          .addCase(getQuotes.rejected, (state, action) => {
+              state.isLoading = false
+              state.isError = true
+              state.message = action.payload
+
+          })
         }
     })
-    export default quoteSlice.reducer
-    export const {reset} = quoteSlice.actions
+export default quoteSlice.reducer
+export const {reset} = quoteSlice.actions

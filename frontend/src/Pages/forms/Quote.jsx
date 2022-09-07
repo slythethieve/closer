@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
-import { createQuote } from '../../features/quote/quoteSlice';
+import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
 import StandardWardrobe from './products/StandardWardrobe'
 import unique_key from '../../utils/unique_key';
 
@@ -11,12 +11,15 @@ const Quote = () => {
     const dispatch = useDispatch()
     
     const [formFields, setFormFields] = useState ([])
-    const onClick = event => {
-        event.preventDefault()
 
+    // weird issue with prevent default not working. Maybe it does not recognize what it should not re render. 
+    const onClick = (event) => {
+        event.preventDefault()
+        
+        
         let newProduct;
         switch (event.target.name) {
-            case "arm_std":
+            case "arm_std": 
                 newProduct = <StandardWardrobe />
                 break
             
@@ -51,13 +54,15 @@ const Quote = () => {
             
         }
         
+        // Maybe you also need to move this inside the try block, right after the double loop. 
         let clientInfoDataPretty = JSON.stringify(clientInfoData)
         let productsInfoDataPretty = JSON.stringify(productsInfoData)
-        formData["clientInfo"] = clientInfoDataPretty
-        formData["products"] = productsInfoDataPretty
+        formData["clientInfo"] = clientInfoData
+        formData["products"] = productsInfoData
 
-        
-        //dispatch(createQuote(formData))
+       
+        //dispatch(getQuotes())
+        dispatch(createQuote(formData))
         
     }
 
