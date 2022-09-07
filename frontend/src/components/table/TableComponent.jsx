@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 
 
 // let's test displaying db data. starting with just the name
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
 import {useEffect} from 'react'
 
@@ -21,13 +21,31 @@ const TableComponent = () => {
     
     //testing dispatch
     const dispatch = useDispatch()
+    // i also think in addition to use effect I also might need use selector
+    const {user} = useSelector((state) => 
+    state.auth
+  )
 
+  const {quote, isLoading, isError, message} = useSelector((state) => 
+    state.quotes)
+
+  useEffect(() => {
+
+    if(isError) {
+      console.log('message')
+    }
     
+
+    dispatch(getQuotes())
+
+    // When we leave the dashboard/home we should clear the clients
+    
+  }, [user, isError, message, dispatch])
 
     const rows = [
         {
             id: 342342342,
-            name: "Elisabeth Theophile",
+            name: "liz",
             total: 15600,
             stato: "Produzione"
         },
@@ -77,12 +95,12 @@ const TableComponent = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {rows.map((row) => (
-                    <TableRow key={row.id}>
+                {quote.map((row) => (
+                    <TableRow key={row._id}>
                     <TableCell component="th" scope="row">
-                        {row.name}
+                        {row.clientInfo[0].firstName}
                     </TableCell>
-                    <TableCell className='tableCell'>{row.id}</TableCell>
+                    <TableCell className='tableCell'>{row._id}</TableCell>
                     <TableCell className='tableCell'>{row.total}</TableCell>
                     <TableCell className='tableCell'>
                         <span className={`status ${row.stato}`}>{row.stato}</span>
