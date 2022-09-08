@@ -1,9 +1,9 @@
-
+import '../form.scss'
 
 const StandardWardrobe = () => {
     return (
         <div className="add-form" id="arm_std">
-            <div className = "task h3" >
+            <div className = "product-header" >
                 <label>Armadio standard giessegi</label>
             </div>
             <div className="form-control">
@@ -33,6 +33,10 @@ const StandardWardrobe = () => {
             <div className="form-control">
                 <label>Note</label>
                 <textarea className="form-control textarea"placeholder="Note" id ="arm_std_notes" />
+            </div>
+            <div className="form-control">
+                <label>Prezzo</label>
+                <input type = 'number' placeholder = "Prezzo" id="price" />
             </div>
         </div>
     )

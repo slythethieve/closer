@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
 import StandardWardrobe from './products/StandardWardrobe'
 import unique_key from '../../utils/unique_key';
-
+import Sidebar from '../../components/sidebar/Sidebar'
+import './quote.scss'
 
 const Quote = () => {
 
@@ -67,30 +68,35 @@ const Quote = () => {
     }
 
     return (
-        <div className='container'>
-            <form onSubmit={onSubmit}>
-                <Adress_Form />
-                <div id = 'products' key ={unique_key()}>
-                {formFields.map(item => (
-                    <div key ={unique_key()}>{item}</div>
-                ))}
-                </div>
-                <input type="submit"></input>
-            </form>
-            <button
-                onClick = {onClick}
-                className='btn' 
-                name="arm_std">Armadio Standard</button>
-            <button 
-                onClick = {onClick}
-                className='btn' 
-                name="arm_nic">Armadio in Nicchia</button>
-            <button 
-                onClick = {onClick}
-                className='btn'>Armadio Mansardato</button>
-            <button 
-                onClick = {onClick}
-                className='btn'>Armadio Scorrevole</button>
+        <div className='quote'>
+            <Sidebar />
+            <div className='formContainer'>
+                <form onSubmit={onSubmit}>
+                    <Adress_Form/>
+                    <div id = 'products' key ={unique_key()}>
+                    {formFields.map(item => (
+                        <div key ={unique_key()}>{item}</div>
+                    ))}
+                    </div>
+                    <input type="submit"></input>
+                </form>
+                <button
+                    onClick = {onClick}
+                    className='button' 
+                    name="arm_std">Armadio Standard</button>
+                <button 
+                    onClick = {onClick}
+                    className='button' 
+                    name="arm_nic">Armadio in Nicchia</button>
+                <button 
+                    onClick = {onClick}
+                    className='button'>Armadio Mansardato</button>
+                <button 
+                    onClick = {onClick}
+                    className='button'>Armadio Scorrevole</button>
+            </div>
+            
+            
         </div>
     )
 }
