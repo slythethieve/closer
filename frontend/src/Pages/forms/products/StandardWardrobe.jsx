@@ -1,6 +1,10 @@
 import '../form.scss'
 
+
 const StandardWardrobe = () => {
+    
+   
+    
     return (
         <div className="add-form" id="arm_std">
             <div className = "product-header" >
