@@ -11,6 +11,9 @@ import InputField from './InputField';
 import './form.scss'
 
 
+// This shit is getting crazy. So I thought I was closing in on a decent solution, but I have encountered another 
+// problem. So now what the fuck do I do? 
+
 const Quote = () => {
 
     // Maybe I can construct another object and put the fields inside there. 
@@ -19,7 +22,8 @@ const Quote = () => {
     // the necessary values. 
     // The main issue is to read with all the necessary values with the same loop
 
-
+    // Ok I have also made this way work, still a bit of repetition but I guess it's even
+    // better than what I had at the beginning. 
     const testComp = {
         placeholders: {
             arm_std_position: "Posizione Armadio",
@@ -33,6 +37,34 @@ const Quote = () => {
         }
          
     }
+
+
+    const lastTest = {
+        placeholders: {
+            std_ward: {
+                arm_std_position: "Posizione Armadio",
+                arm_std_model: "Modello",
+                arm_std_finish: "Finitura"
+            },
+            curtain: {
+                length: "lunghezza",
+                width: "larghezza"
+            }
+        },
+        fields: {
+            std_ward: {
+                arm_std_position: "",
+                arm_std_model: "",
+                arm_std_finish: ""
+            },
+            curtain: {
+                length: "",
+                width: ""
+            }
+        }
+    }
+
+    
 
     
 
@@ -58,8 +90,8 @@ const Quote = () => {
         arm_finish: ""
     }
     const curtain_fields = {
-        length: "no idea",
-        width: "yeah this is a curtain"
+        length: "",
+        width: ""
     }
 
     const [productFields, setProductFields] = useState([])
@@ -69,16 +101,20 @@ const Quote = () => {
     // To potentially also add other fields to this new approach take a look at that question on Stack Overflow
 
     const onClick = (event) => {
-        let newProduct
+        let newProduct 
         switch (event.target.name) {
             case "arm_std":
-                newProduct = testComp.std_ward_fields
+                //newProduct = testComp.std_ward_fields
+                newProduct = lastTest.fields.std_ward
+                
                 break
             case "curtain":
-                newProduct = curtain_fields
+                newProduct = lastTest.fields.curtain
+                
                 break
         }
         setProductFields([...productFields, newProduct])
+        
     }
 
     const onChangeHandler = (index, event) => {
@@ -94,6 +130,7 @@ const Quote = () => {
     const onSubmit = (event) => {
         event.preventDefault()
         console.log(productFields)
+        
     }
 
     return (
@@ -103,14 +140,17 @@ const Quote = () => {
                 <form onSubmit={onSubmit}>
                     <Adress_Form/>
                     <div>
-                        {productFields.map((item, index) => (
+                        {Object.entries(productFields).map(([test,item], index) => (
+                            
                             <div key= {index}>
                             {Object.entries(item).map(([key, value]) => (
-                                <InputField placeholder = {testComp.placeholders[key]} key={key} name={key} value={value} onChange={event => onChangeHandler(index, event)}/>
+                                <InputField placeholder = {lastTest.placeholders[key]} key={key} name={key} value={value} onChange={event => onChangeHandler(index, event)}/>
+                                
                             ))}
                             </div>
                         ))}
                     </div>
+                    
                     <input type="submit"></input>
                 </form>
                 <button
