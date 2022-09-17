@@ -10,116 +10,75 @@ import Curtain from './products/Curtain';
 import InputField from './InputField';
 import './form.scss'
 
+// Ok very big progress, the last problem to fix is I think how to handle
+// a text area. 
 
-// This shit is getting crazy. So I thought I was closing in on a decent solution, but I have encountered another 
-// problem. So now what the fuck do I do? 
+// Maybe I have found the right logic to do this with the text area. Now I need 
+// to be sure this way works and also I need to work out the kinks with 
+// the onChangehandler
 
 const Quote = () => {
 
-    // Maybe I can construct another object and put the fields inside there. 
-    // But I would also probably need another complicated map loop. Let's see. 
-    // You need to put some thought as to how to construct this new object with all
-    // the necessary values. 
-    // The main issue is to read with all the necessary values with the same loop
-
-    // Ok I have also made this way work, still a bit of repetition but I guess it's even
-    // better than what I had at the beginning. 
-    const testComp = {
-        placeholders: {
-            arm_std_position: "Posizione Armadio",
-            arm_std_model: "Modello",
-            arm_std_finish: "Finitura"
-        },
-        std_ward_fields: {
-            arm_std_position: "",
-            arm_std_model: "",
-            arm_std_finish: ""
-        }
-         
-    }
-
-
-    const lastTest = {
-        placeholders: {
-            std_ward: {
-                arm_std_position: "Posizione Armadio",
-                arm_std_model: "Modello",
-                arm_std_finish: "Finitura"
+    // To avoid confusion. The indices in the arrays represent:
+    // 0: value
+    // 1: placeholder
+    // 2: label text
+    const products = {
+        std_ward: {
+            inputs: {
+                std_ward_position: ["","Posizione Armadio", "Posizione Armadio"],
+                std_ward_model: ["","Modello", "Modello"],
+                std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante"],
+                std_ward_width: ["", "L. in mm", "Larghezza in millimetri"],
+                std_ward_height: ["", "H. in mm", "Altezza minima in millimetri"],
+                std_ward_depth: ["", "P. in mm", "Profondità in millimetri"]
             },
-            curtain: {
-                length: "lunghezza",
-                width: "larghezza"
+            textArea: {
+                std_ward_accessories: ["", "Accessori", "Accessori"],
+                std_ward_notes: ["", "Note", "Note"]
             }
+            
         },
-        fields: {
-            std_ward: {
-                arm_std_position: "",
-                arm_std_model: "",
-                arm_std_finish: ""
+        curtain: {
+            inputs: {
+                std_ward_position: ["","Posizione Armadio", "Posizione Armadio"],
+                std_ward_model: ["","Modello", "Modello"],
+                std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante"],
+                std_ward_width: ["", "L. in mm", "Larghezza in millimetri"],
+                std_ward_height: ["", "H. in mm", "Altezza minima in millimetri"],
+                std_ward_depth: ["", "P. in mm", "Profondità in millimetri"]
             },
-            curtain: {
-                length: "",
-                width: ""
+            textArea: {
+                std_ward_accessories: ["", "Accessori", "Accessori"],
+                std_ward_notes: ["", "Note", "Note"]
             }
         }
-    }
-
-    
-
-    
-
-    // Ok ok this way works for sure. I don't think it is as clean as I would like. 
-    // I would prefer it if I could put everything inside an object. 
-    const testPlaceholders = [
-        "Posizione Armadio",
-        "Modello",
-        "Finitura"
-    ]
-
-    const placeholders = {
-        arm_std_position: "Posizione",
-        arm_std_model: "test",
-        arm_finish: "test"
-    }
-
-    const [testState, setTestState] = useState([])
-
-    const std_ward_fields = {
-        arm_std_position: "",
-        arm_std_model: "",
-        arm_finish: ""
-    }
-    const curtain_fields = {
-        length: "",
-        width: ""
     }
 
     const [productFields, setProductFields] = useState([])
-    // Holy shit, I'm actually getting somewhere with this approach
-    // Now I have to implement styling, labels and then the last big thing
-    // will be handling submit, avoiding the convoluted way I was doing it before.
-    // To potentially also add other fields to this new approach take a look at that question on Stack Overflow
 
     const onClick = (event) => {
         let newProduct 
         switch (event.target.name) {
-            case "arm_std":
-                //newProduct = testComp.std_ward_fields
-                newProduct = lastTest.fields.std_ward
-                
+            case "std_ward":
+                newProduct = products.std_ward
                 break
             case "curtain":
-                newProduct = lastTest.fields.curtain
-                
+                newProduct = products.curtain
                 break
         }
         setProductFields([...productFields, newProduct])
-        
     }
 
+    // Actually I don't think I really need an index value
+    // Maybe I can away with a for loop.
     const onChangeHandler = (index, event) => {
         let data = [...productFields]
-        data[index][event.target.name] = event.target.value
+        console.log(Object.values(data[0])[0][event.target.name])
+        
+        // Ok so this base logic works. Have to now turn it in a for loop
+        // and be sure it works for all products. 
+        Object.values(data[0])[0][event.target.name][0] = event.target.value
         setProductFields(data)
     }
 
@@ -129,7 +88,7 @@ const Quote = () => {
     // to change the current model schema. 
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(productFields)
+        console.log(productFields[0][0])
         
     }
 
@@ -140,14 +99,15 @@ const Quote = () => {
                 <form onSubmit={onSubmit}>
                     <Adress_Form/>
                     <div>
-                        {Object.entries(productFields).map(([test,item], index) => (
+                        {productFields.map((item) => (
+                            Object.values(item).map((test,index) => (
+                                <div key= {index}>
+                                {Object.entries(test).map(([key, value]) => (
+                                    <InputField placeholder={value[1]} key={key} name={key} value={value[0]} onChange={event => onChangeHandler(index, event)}/>
+                                ))}
+                                </div>
+                            ))
                             
-                            <div key= {index}>
-                            {Object.entries(item).map(([key, value]) => (
-                                <InputField placeholder = {lastTest.placeholders[key]} key={key} name={key} value={value} onChange={event => onChangeHandler(index, event)}/>
-                                
-                            ))}
-                            </div>
                         ))}
                     </div>
                     
@@ -156,7 +116,7 @@ const Quote = () => {
                 <button
                     onClick = {onClick}
                     className='button' 
-                    name="arm_std">Armadio Standard</button>
+                    name="std_ward">Armadio Standard</button>
                 <button 
                     onClick = {onClick}
                     className='button' 

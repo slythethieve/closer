@@ -1,6 +1,6 @@
 import './form.scss'
 
-const InputField = ({...props}) => {
+const InputField = ({label,...props}) => {
   return (
     <div className='form-control'>
         
