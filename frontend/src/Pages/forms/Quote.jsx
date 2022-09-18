@@ -116,10 +116,7 @@ const Quote = () => {
 
     const dispatch = useDispatch()
 
-    // Submit finally works. In fact even better than before. 
-    // Potentially one additional improvement to make would be to put each product in its own object. 
-    // Maybe to do that I need to change all the products fields to objects instead of arrays. 
-    // Or maybe just create a generic product id and then push the entire object. Something like that
+    // Submit works exactly like I wanted it to. 
     const onSubmit = (event) => {
         event.preventDefault()
 
@@ -133,10 +130,13 @@ const Quote = () => {
 
         for (let i = 1; i < productFields.length; i++ ) {
             Object.entries(productFields[i]).map(([key,value]) => {
-                productsInfoData[key] = value[0]
+                productsInfoData[`product${i}`] = 
+                    {...productsInfoData[`product${i}`],...{
+                        [key]: value[0]
+                }}
             })
         }
-
+        
         quoteData["clientInfo"] = clientInfoData
         quoteData["products"] = productsInfoData
         dispatch(createQuote(quoteData))
