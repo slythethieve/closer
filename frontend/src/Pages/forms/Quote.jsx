@@ -30,6 +30,18 @@ const Quote = () => {
             std_ward_notes: ["", "Note", "Note", "textArea"],
             std_ward_price: ["", "Prezzo", "Prezzo", "input"]
         },
+        roof_pitched_ward: {
+            roof_pitched_position: ["","Posizione Armadio", "Posizione Armadio", "input"],
+            roof_pitched_model: ["","Modello", "Modello", "input"],
+            roof_pitched_finish: ["","Finitura", "Finitura Fianchi/Ante", "input"],
+            roof_pitched_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
+            roof_pitched_height_max: ["", "H. max in mm", "Altezza massima in millimetri", "input"],
+            roof_pitched_height_min: ["", "H. min in mm", "Altezza minima in millimetri", "input"],
+            roof_pitched_depth: ["", "P. in mm", "Profondità in millimetri", "input"],
+            roof_pitched_accessories: ["", "Accessori", "Accessori", "textArea"],
+            roof_pitched_notes: ["", "Note", "Note", "textArea"],
+            roof_pitched_price: ["", "Prezzo", "Prezzo", "input"]
+        },
         curtain: {
             curtain_position: ["","Posizione Tenda", "Posizione Tenda", "input"],
             curtain_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
@@ -37,12 +49,45 @@ const Quote = () => {
             curtain_height_right: ["", "H. dx in mm", "Altezza destra in millimetri", "input"],
             curtain_fabric: ["", "Stoffa", "Stoffa", "input"],
             curtain_sewing: ["", "Cucitura", "Cucitura", "input"],
+            curtain_fabric_multiplicator: ["", "Rapporto", "Rapporto", "input"],
             curtain_notes: ["", "Note", "Note", "textArea"],
             curtain_price: ["", "Prezzo", "Prezzo", "input"]
-        }
-    }
+        },
+        mosquito_net: {
+            mosquito_net_position: ["","Posizione Zanzariera", "Posizione Zanzariera", "input"],
+            mosquito_net_model: ["","Modello", "Modello", "input"],
+            mosquito_net_finish_structure: ["","Colore Struttura", "Colore Struttura", "input"],
+            mosquito_net_finish_net: ["","Colore Rete", "Colore Rete", "input"],
+            mosquito_net_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
+            mosquito_net_height: ["", "H. in mm", "Altezza in millimetri", "input"],
+            mosquito_net_notes: ["", "Note", "Note", "textArea"],
+            mosquito_net_price: ["", "Prezzo", "Prezzo", "input"]
+        },
+        plissee: {
+            plissee_position: ["","Posizione Plissée", "Posizione Plissée", "input"],
+            plissee_model: ["","Modello", "Modello", "input"],
+            plissee_finish_structure: ["","Colore Struttura", "Colore Struttura", "input"],
+            plissee_fabric: ["","Articolo Stoffa", "Articolo Stoffa", "input"],
+            plissee_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
+            plissee_height: ["", "H. in mm", "Altezza in millimetri", "input"],
+            plissee_notes: ["", "Note", "Note", "textArea"],
+            plissee_price: ["", "Prezzo", "Prezzo", "input"]
+        },
 
-    const [productFields, setProductFields] = useState([])
+
+    }
+    
+    // By default we want to see the client info form
+    const [productFields, setProductFields] = useState([{
+        firstName: ["", "Nome", "Nome", "input"],
+        lastName: ["", "Cognome", "Cognome", "input"],
+        address: ["", "Indirizzo", "Indirizzo", "input"],
+        plz: ["", "CAP", "CAP", "input"],
+        city: ["", "Città", "Città", "input"],
+        phone_number: ["", "076 123 45 67", "Numero di Telefono", "input"],
+        email: ["", "paolo.rossi@gmail.com", "Email", "input"]
+        
+    }])
 
     const onClick = (event) => {
         let newProduct 
@@ -52,6 +97,15 @@ const Quote = () => {
                 break
             case "curtain":
                 newProduct = products.curtain
+                break
+            case "roof_pitched_ward":
+                newProduct = products.roof_pitched_ward
+                break
+            case "mosquito_net":
+                newProduct = products.mosquito_net
+                break
+            case "plissee":
+                newProduct = products.plissee
                 break
         }
         setProductFields([...productFields, newProduct])
@@ -69,7 +123,7 @@ const Quote = () => {
     // to change the current model schema. 
     const onSubmit = (event) => {
         event.preventDefault()
-        //console.log(productFields[0][0])
+        console.log(productFields)
         
     }
 
@@ -78,7 +132,6 @@ const Quote = () => {
             <Sidebar />
             <div className='formContainer'>
                 <form onSubmit={onSubmit}>
-                    <Adress_Form/>
                     <div>
                         {productFields.map((item, index) => (
                             <div key= {index}>
@@ -96,7 +149,7 @@ const Quote = () => {
                                 </div>
                         ))}
                     </div>
-                    <input type="submit"></input>
+                    <input className="button" type="submit"></input>
                 </form>
                 <button
                     onClick = {onClick}
@@ -105,16 +158,21 @@ const Quote = () => {
                 <button 
                     onClick = {onClick}
                     className='button' 
+                    name="roof_pitched_ward">Armdadio Mansardato</button>
+                <button 
+                    onClick = {onClick}
+                    className='button'
                     name="curtain">Tenda</button>
                 <button 
                     onClick = {onClick}
-                    className='button'>Armadio Mansardato</button>
+                    className='button'
+                    name ="mosquito_net">Zanzariera</button>
                 <button 
                     onClick = {onClick}
-                    className='button'>Armadio Scorrevole</button>
+                    className='button'
+                    name ="plissee">Plissée</button>
+
             </div>
-            
-            
         </div>
     )
 }
