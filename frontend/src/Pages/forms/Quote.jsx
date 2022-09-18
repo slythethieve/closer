@@ -1,5 +1,4 @@
 import { useState} from 'react';
-import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
 import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
 import unique_key from '../../utils/unique_key';
@@ -73,8 +72,6 @@ const Quote = () => {
             plissee_notes: ["", "Note", "Note", "textArea"],
             plissee_price: ["", "Prezzo", "Prezzo", "input"]
         },
-
-
     }
     
     // By default we want to see the client info form
@@ -117,13 +114,32 @@ const Quote = () => {
         setProductFields(data)
     }
 
-    // With this new approach I have to change the onSubmit function a little bit. 
-    // I will get rid of that complicated for loop. The "only" thing I will need to add
-    // is a way of putting dividing clientInfo and products data, so that I don't have
-    // to change the current model schema. 
+    const dispatch = useDispatch()
+
+    // Submit finally works. In fact even better than before. 
+    // Potentially one additional improvement to make would be to put each product in its own object. 
+    // Maybe to do that I need to change all the products fields to objects instead of arrays. 
+    // Or maybe just create a generic product id and then push the entire object. Something like that
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(productFields)
+
+        let quoteData = {}
+        let clientInfoData = {}
+        let productsInfoData = {}
+
+        Object.entries(productFields[0]).map(([key, value]) => {
+            clientInfoData[key] = value[0]
+        })
+
+        for (let i = 1; i < productFields.length; i++ ) {
+            Object.entries(productFields[i]).map(([key,value]) => {
+                productsInfoData[key] = value[0]
+            })
+        }
+
+        quoteData["clientInfo"] = clientInfoData
+        quoteData["products"] = productsInfoData
+        dispatch(createQuote(quoteData))
         
     }
 

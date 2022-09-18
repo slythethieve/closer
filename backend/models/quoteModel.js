@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const quoteSchema = mongoose.Schema({
     clientInfo: {
-        type: Array
+        type: Object
     },
     products: {
-        type: Array
+        type: Object
     },
 },
 {
