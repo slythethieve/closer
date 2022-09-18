@@ -1,12 +1,12 @@
 import './form.scss'
 
-const InputField = ({label,...props}) => {
+const TextArea = ({label,...props}) => {
   return (
     <div className='form-control'>
         <label>{label}</label>
-        <input {...props}/>
+        <textarea {...props}/>
     </div>
   )
 }
 
-export default InputField
+export default TextArea

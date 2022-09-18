@@ -2,20 +2,14 @@ import { useState} from 'react';
 import Adress_Form from './Adress_Form';
 import { useDispatch } from 'react-redux';
 import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
-import StandardWardrobe from './products/StandardWardrobe'
 import unique_key from '../../utils/unique_key';
 import Sidebar from '../../components/sidebar/Sidebar'
-import './quote.scss'
-import Curtain from './products/Curtain';
+import TextArea from './TextArea';
 import InputField from './InputField';
 import './form.scss'
+import './quote.scss'
 
-// Ok very big progress, the last problem to fix is I think how to handle
-// a text area. 
 
-// Maybe I have found the right logic to do this with the text area. Now I need 
-// to be sure this way works and also I need to work out the kinks with 
-// the onChangehandler
 
 const Quote = () => {
 
@@ -23,35 +17,28 @@ const Quote = () => {
     // 0: value
     // 1: placeholder
     // 2: label text
+    // 3: element type (input, textArea, etc.)
     const products = {
         std_ward: {
-            inputs: {
-                std_ward_position: ["","Posizione Armadio", "Posizione Armadio"],
-                std_ward_model: ["","Modello", "Modello"],
-                std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante"],
-                std_ward_width: ["", "L. in mm", "Larghezza in millimetri"],
-                std_ward_height: ["", "H. in mm", "Altezza minima in millimetri"],
-                std_ward_depth: ["", "P. in mm", "Profondità in millimetri"]
-            },
-            textArea: {
-                std_ward_accessories: ["", "Accessori", "Accessori"],
-                std_ward_notes: ["", "Note", "Note"]
-            }
-            
+            std_ward_position: ["","Posizione Armadio", "Posizione Armadio", "input"],
+            std_ward_model: ["","Modello", "Modello", "input"],
+            std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante", "input"],
+            std_ward_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
+            std_ward_height: ["", "H. in mm", "Altezza minima in millimetri", "input"],
+            std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input"],
+            std_ward_accessories: ["", "Accessori", "Accessori", "textArea"],
+            std_ward_notes: ["", "Note", "Note", "textArea"],
+            std_ward_price: ["", "Prezzo", "Prezzo", "input"]
         },
         curtain: {
-            inputs: {
-                std_ward_position: ["","Posizione Armadio", "Posizione Armadio"],
-                std_ward_model: ["","Modello", "Modello"],
-                std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante"],
-                std_ward_width: ["", "L. in mm", "Larghezza in millimetri"],
-                std_ward_height: ["", "H. in mm", "Altezza minima in millimetri"],
-                std_ward_depth: ["", "P. in mm", "Profondità in millimetri"]
-            },
-            textArea: {
-                std_ward_accessories: ["", "Accessori", "Accessori"],
-                std_ward_notes: ["", "Note", "Note"]
-            }
+            curtain_position: ["","Posizione Tenda", "Posizione Tenda", "input"],
+            curtain_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
+            curtain_height_left: ["", "H. sx in mm", "Altezza sinistra in millimetri", "input"],
+            curtain_height_right: ["", "H. dx in mm", "Altezza destra in millimetri", "input"],
+            curtain_fabric: ["", "Stoffa", "Stoffa", "input"],
+            curtain_sewing: ["", "Cucitura", "Cucitura", "input"],
+            curtain_notes: ["", "Note", "Note", "textArea"],
+            curtain_price: ["", "Prezzo", "Prezzo", "input"]
         }
     }
 
@@ -70,15 +57,9 @@ const Quote = () => {
         setProductFields([...productFields, newProduct])
     }
 
-    // Actually I don't think I really need an index value
-    // Maybe I can away with a for loop.
     const onChangeHandler = (index, event) => {
         let data = [...productFields]
-        console.log(Object.values(data[0])[0][event.target.name])
-        
-        // Ok so this base logic works. Have to now turn it in a for loop
-        // and be sure it works for all products. 
-        Object.values(data[0])[0][event.target.name][0] = event.target.value
+        data[index][event.target.name][0] = event.target.value
         setProductFields(data)
     }
 
@@ -88,7 +69,7 @@ const Quote = () => {
     // to change the current model schema. 
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(productFields[0][0])
+        //console.log(productFields[0][0])
         
     }
 
@@ -99,18 +80,22 @@ const Quote = () => {
                 <form onSubmit={onSubmit}>
                     <Adress_Form/>
                     <div>
-                        {productFields.map((item) => (
-                            Object.values(item).map((test,index) => (
-                                <div key= {index}>
-                                {Object.entries(test).map(([key, value]) => (
-                                    <InputField placeholder={value[1]} key={key} name={key} value={value[0]} onChange={event => onChangeHandler(index, event)}/>
-                                ))}
+                        {productFields.map((item, index) => (
+                            <div key= {index}>
+                                {Object.entries(item).map(([key, value]) => {
+                                    if(value[3] === "input") {
+                                        return (
+                                            <InputField label={value[2]} placeholder={value[1]} key={key} name={key} value={value[0]} onChange={event => onChangeHandler(index, event)}/>
+                                        )
+                                    }else if(value[3] === "textArea") {
+                                        return (
+                                            <TextArea label={value[2]} placeholder={value[1]} key={key} name={key} value={value[0]} onChange={event => onChangeHandler(index, event)}/>
+                                        )
+                                    }
+                                })}
                                 </div>
-                            ))
-                            
                         ))}
                     </div>
-                    
                     <input type="submit"></input>
                 </form>
                 <button
