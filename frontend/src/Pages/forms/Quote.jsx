@@ -8,10 +8,16 @@ import InputField from './InputField';
 import './form.scss'
 import './quote.scss'
 
-
+// TODO: Put another div with better styling for
+// proper button placement. 
 
 const Quote = () => {
 
+    // Look at the section about the form in the Lama Dev tutorial
+    // He actually does something very similar to you. Only with 
+    // objects instead of arrays. But I guess it's pretty much the same thing.
+
+    
     // To avoid confusion. The indices in the arrays represent:
     // 0: value
     // 1: placeholder
