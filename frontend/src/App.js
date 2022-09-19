@@ -4,11 +4,11 @@ import Login from './Pages/login/Login';
 import List from './Pages/list/List';
 import Quote from './Pages/forms/Quote'
 import Single from './Pages/single/Single';
-
+import './style/dark.scss'
 
 function App() {
   return (
-    <>
+    <div className ="app">
       <Router>
         <div>
           <Routes>
@@ -24,7 +24,7 @@ function App() {
         </div>
       </Router>
       
-    </>
+    </div>
     
   );
 }

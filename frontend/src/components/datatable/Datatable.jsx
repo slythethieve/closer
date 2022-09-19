@@ -2,7 +2,7 @@ import './datatable.scss'
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { userColumns, userRows} from '../../dataTableFakeData'
-
+import { Link} from "react-router-dom"
 
 function Datatable() {
 
@@ -14,7 +14,10 @@ function Datatable() {
       renderCell: () => {
         return(
           <div className='cellAction'>
-            <div className='viewButton'>View</div>
+            <Link to="/orders/test">
+              <div className='viewButton'>View</div>
+            </Link>
+            
             <div className='deleteButton'>Delete</div>
           </div>
         )
