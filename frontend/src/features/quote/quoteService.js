@@ -28,9 +28,10 @@ const getQuotes = async (token) => {
   const response = await axios.get(API_URL, config)
 
   
-  // So this is a way to get the object id of a an entry. Good stuff. 
-  console.log(response.data[0]._id)
-  console.log(response.data[1].products)
+  
+  //console.log(response.data[0].clientInfo.firstName)
+  //console.log(response.data[0].products.product1.price)
+  
 
   return response.data
 }

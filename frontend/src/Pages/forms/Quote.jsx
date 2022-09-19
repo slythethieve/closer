@@ -27,7 +27,7 @@ const Quote = () => {
             std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input"],
             std_ward_accessories: ["", "Accessori", "Accessori", "textArea"],
             std_ward_notes: ["", "Note", "Note", "textArea"],
-            std_ward_price: ["", "Prezzo", "Prezzo", "input"]
+            price: ["", "Prezzo", "Prezzo", "input"]
         },
         roof_pitched_ward: {
             roof_pitched_position: ["","Posizione Armadio", "Posizione Armadio", "input"],
@@ -39,7 +39,7 @@ const Quote = () => {
             roof_pitched_depth: ["", "P. in mm", "Profondità in millimetri", "input"],
             roof_pitched_accessories: ["", "Accessori", "Accessori", "textArea"],
             roof_pitched_notes: ["", "Note", "Note", "textArea"],
-            roof_pitched_price: ["", "Prezzo", "Prezzo", "input"]
+            price: ["", "Prezzo", "Prezzo", "input"]
         },
         curtain: {
             curtain_position: ["","Posizione Tenda", "Posizione Tenda", "input"],
@@ -50,7 +50,7 @@ const Quote = () => {
             curtain_sewing: ["", "Cucitura", "Cucitura", "input"],
             curtain_fabric_multiplicator: ["", "Rapporto", "Rapporto", "input"],
             curtain_notes: ["", "Note", "Note", "textArea"],
-            curtain_price: ["", "Prezzo", "Prezzo", "input"]
+            price: ["", "Prezzo", "Prezzo", "input"]
         },
         mosquito_net: {
             mosquito_net_position: ["","Posizione Zanzariera", "Posizione Zanzariera", "input"],
@@ -60,7 +60,7 @@ const Quote = () => {
             mosquito_net_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
             mosquito_net_height: ["", "H. in mm", "Altezza in millimetri", "input"],
             mosquito_net_notes: ["", "Note", "Note", "textArea"],
-            mosquito_net_price: ["", "Prezzo", "Prezzo", "input"]
+            price: ["", "Prezzo", "Prezzo", "input"]
         },
         plissee: {
             plissee_position: ["","Posizione Plissée", "Posizione Plissée", "input"],
@@ -70,7 +70,7 @@ const Quote = () => {
             plissee_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
             plissee_height: ["", "H. in mm", "Altezza in millimetri", "input"],
             plissee_notes: ["", "Note", "Note", "textArea"],
-            plissee_price: ["", "Prezzo", "Prezzo", "input"]
+            price: ["", "Prezzo", "Prezzo", "input"]
         },
     }
     

@@ -98,7 +98,7 @@ const TableComponent = () => {
                 {quote.map((row) => (
                     <TableRow key={row._id}>
                     <TableCell component="th" scope="row">
-                        {row.clientInfo[0].firstName}
+                        {row.clientInfo.firstName}
                     </TableCell>
                     <TableCell className='tableCell'>{row._id}</TableCell>
                     <TableCell className='tableCell'>{row.total}</TableCell>
