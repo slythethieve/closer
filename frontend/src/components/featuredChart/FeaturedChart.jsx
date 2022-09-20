@@ -13,7 +13,12 @@ import "./featuredChart.scss"
 // Following the tutorial I have a summary section below, which I'm not
 // sure I'm going to use. I'll follow it anyway, maybe some ideas will
 // pop into my mind. 
-function FeaturedChart() {
+function FeaturedChart({total}) {
+
+  // This can be changed and made dynamic of course. But let's just pick a number.
+  const target = 100000
+  const result = total/target*100
+
   return (
     <div className="featured">
       <div className="top">
@@ -23,8 +28,8 @@ function FeaturedChart() {
       <div className="bottom">
         <div className='featuredChart'>
           <CircularProgressbar 
-            value = {70} 
-            text ={"70%"} 
+            value = {result} 
+            text ={`${result}%`} 
             strokeWidth="2"
             styles={buildStyles({
               textColor: "black",

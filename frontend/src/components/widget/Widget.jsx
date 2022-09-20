@@ -9,8 +9,6 @@ import PeopleIcon from '@mui/icons-material/People';
 
 function Widget({type, total}) {
     let data;
-
-    // temp data
     const amount = 100
     const diff = 20
     switch(type) {
@@ -21,7 +19,8 @@ function Widget({type, total}) {
                 link: "Vedi tutte le offerte",
                 icon: (
                     <SummarizeIcon className="icon" />
-                )
+                ),
+                amount: total
             }
             break;
         case "contracts":
@@ -31,7 +30,8 @@ function Widget({type, total}) {
                 link: "Vedi tutte i contratti",
                 icon: (
                     <RequestPageIcon className="icon" />
-                )
+                ),
+                amount: total
             }
             break;
         case "revenue":
@@ -41,7 +41,8 @@ function Widget({type, total}) {
                 link: "Vedi lo sviluppo del fatturato",
                 icon: (
                     <PointOfSaleIcon className="icon" />
-                )
+                ),
+                amount: total
             }
             break;
         case "clients":
@@ -51,7 +52,8 @@ function Widget({type, total}) {
                 link: "Vedi tutte i clienti",
                 icon: (
                     <PeopleIcon className="icon" />
-                )
+                ),
+                amount: total
             }
             break;
         default: 
@@ -61,13 +63,11 @@ function Widget({type, total}) {
     <div className="widget">
         <div className="left">
             <span className="title">{data.title}</span>
-            <span className="counter">{data.isMoney && "CHF"} {total}</span>
+            <span className="counter">{data.isMoney && "CHF"} {data.amount}</span>
             <span className="link">{data.link}</span>
         </div>
         <div className="right">
             <div className="percentage positive">
-                <KeyboardArrowUpIcon />
-                {diff} %
             </div>
             {data.icon}
         </div>

@@ -22,6 +22,7 @@ function Dashboard() {
   const dispatch = useDispatch()
 
   const [total, setTotal] = useState(0)
+  const [numberOfClients, setNumberOfClients] = useState(0)
 
   const {quote, isLoading, isError, message} = useSelector((state) => 
         state.quotes)
@@ -37,10 +38,11 @@ function Dashboard() {
 
     
     calculateTotal(quote)
+    setNumberOfClients(quote.length)
     
   }, [quote.length, isError, message, dispatch])
 
-
+  // Total revenue
   const calculateTotal = (quote) => {
     let totalRev = 0
     for (let i = 0; i < quote.length; i++) {
@@ -52,19 +54,21 @@ function Dashboard() {
     }
     setTotal(totalRev)
   }
+
+  
   return (
     <div className="dashboard">
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="invoices"/>
-          <Widget type="contracts"/>
+          <Widget type="invoices" total={numberOfClients}/>
+          <Widget type="contracts" total = {numberOfClients}/>
           <Widget type="revenue" total ={total}/>
-          <Widget type="clients"/>
+          <Widget type="clients" total ={numberOfClients}/>
         </div>
         <div className="charts">
-          <FeaturedChart />
+          <FeaturedChart total= {total}/>
           <Chart />
         </div>
         <div className="listContainer">
