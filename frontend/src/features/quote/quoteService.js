@@ -36,6 +36,17 @@ const getQuotes = async (token) => {
   return response.data
 }
 
+// Maybe this is not actually needed at all. 
+const getQuotesNumber = async (token) => {
+  const config = {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.get(API_URL, config)
+  return response.data
+}
+
 const quoteService = {
   createQuote,
   getQuotes

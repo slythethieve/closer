@@ -7,7 +7,7 @@ import PeopleIcon from '@mui/icons-material/People';
 
 
 
-function Widget({type}) {
+function Widget({type, total}) {
     let data;
 
     // temp data
@@ -61,7 +61,7 @@ function Widget({type}) {
     <div className="widget">
         <div className="left">
             <span className="title">{data.title}</span>
-            <span className="counter">{data.isMoney && "CHF"} {amount}</span>
+            <span className="counter">{data.isMoney && "CHF"} {total}</span>
             <span className="link">{data.link}</span>
         </div>
         <div className="right">

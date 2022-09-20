@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 
 // let's test displaying db data. starting with just the name
 import { useSelector, useDispatch } from 'react-redux';
-import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
+import { getQuotes } from '../../features/quote/quoteSlice';
 import {useEffect} from 'react'
 
 import './table.scss'
@@ -21,13 +21,16 @@ const TableComponent = () => {
     
     //testing dispatch
     const dispatch = useDispatch()
+
+    // ACtually I don't need this. I only need this in pages to check if I'm logged in. 
+    // If I'm logged in I can access the page, if not I will navigate back to the login page. 
     // i also think in addition to use effect I also might need use selector
     const {user} = useSelector((state) => 
     state.auth
-  )
+    )
 
-  const {quote, isLoading, isError, message} = useSelector((state) => 
-    state.quotes)
+    const {quote, isLoading, isError, message} = useSelector((state) => 
+        state.quotes)
 
   useEffect(() => {
 

@@ -26,20 +26,22 @@ export const createQuote = createAsyncThunk('quotes/create',
           }
     })
 
-    export const getQuotes = createAsyncThunk('quotes/getAll', async (_, thunkAPI) => {
-      try {
-          const token = thunkAPI.getState().auth.user.token
-          return await quoteService.getQuotes(token)
-      } catch (error) {
-          const message = 
-          (error.response && 
-              error.response.data && 
-              error.response.data.message) 
-              || error.message || error.toString()
-  
-          return thunkAPI.rejectWithValue(message)
-      }
+  export const getQuotes = createAsyncThunk('quotes/getAll', async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await quoteService.getQuotes(token)
+    } catch (error) {
+        const message = 
+        (error.response && 
+            error.response.data && 
+            error.response.data.message) 
+            || error.message || error.toString()
+
+        return thunkAPI.rejectWithValue(message)
+    }
   })
+
+  
 
   export const quoteSlice = createSlice({
         name: 'quote',
