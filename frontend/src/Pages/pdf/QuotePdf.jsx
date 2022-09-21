@@ -1,6 +1,5 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-//import Pdf from '../pdf/Pdf'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -10,7 +9,7 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const Test = () => (
+export const QuotePdf = () => (
     <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
@@ -18,6 +17,7 @@ const Test = () => (
       </View>
     </Page>
   </Document>
+
 )
 
-export default Test
+export default QuotePdf

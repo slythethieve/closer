@@ -21,13 +21,10 @@ function App() {
             </Route>
             <Route path='/new' element= {<Quote />} />
             <Route path='/pdf' element= {<Pdf />} />
-            
           </Routes>
         </div>
       </Router>
-      
     </div>
-    
   );
 }
 

@@ -10,6 +10,9 @@
     border: 1px solid black;
     
 
+    .left {
+        flex: 2;
+    }
     .left, 
     .right{
         display: flex;
@@ -18,13 +21,15 @@
 
         .title{
             font-weight: bold;
-            font-size: 14px;
+            font-size: 18px;
             color: grey;
         }
 
         .counter{
-            font-size: 28px;
+            font-size: 38px;
             font-weight: 300;
+            align-self: flex-start;
+            
         }
 
         .link{
