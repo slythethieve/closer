@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   // Later I will make these contact fields dynamic
   // But for that I need to adjust my db model again 
   // slightly. 
-  const CompanyDetailsRow = () => (
+  const CompanyDetailsColumn = () => (
     <View style = {styles.container}>
         <CompanyDetailsComp />
         <Logo />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
     </View>
     );
   
-  export default CompanyDetailsRow
+  export default CompanyDetailsColumn

@@ -2,10 +2,11 @@ import React from 'react';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 
-import CompanyDetailsComp from './pdfComponents/CompanyDetailsComp';
 
-import CompanyDetailsRow from './pdfComponents/CompanyDetailsRow';
 
+import CompanyDetailsColumn from './pdfComponents/CompanyDetailsColumn';
+import ClientDetailsColumn from './pdfComponents/ClientDetailsColumn';
+import DateComponent from './pdfComponents/DateComponent';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -27,7 +28,9 @@ const styles = StyleSheet.create({
 export const QuotePdf = () => (
     <Document>
     <Page size="A4" style={styles.page}>
-      <CompanyDetailsRow />
+      <CompanyDetailsColumn />
+      <DateComponent />
+      <ClientDetailsColumn />
     </Page>
   </Document>
 
