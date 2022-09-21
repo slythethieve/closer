@@ -9,26 +9,26 @@ function Sidebar() {
   return (
     <div className="sidebar">
         <div className="top">
-            <Link to ="/">
+            <Link className="link" to ="/">
                 <span className="logo">closer</span>
             </Link>
         </div>
         <hr></hr>
         <div className="center">
             <ul>
-                <Link to="/">
+                <Link className="link" to="/">
                     <li>
                         <DashboardIcon className="icon"/>
                         <span>Dashboard</span>
                     </li>
                 </Link>
-                <Link to="/new">
+                <Link className="link" to="/new">
                     <li>
                         <AddIcon className="icon"/>
                         <span>Nuova offerta</span>
                     </li>
                 </Link>
-                <Link to="/orders">
+                <Link className="link" to="/orders">
                 <li>
                     <StorageIcon className="icon"/>
                     <span>Ordini</span>

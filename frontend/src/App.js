@@ -5,6 +5,7 @@ import List from './Pages/list/List';
 import Quote from './Pages/forms/Quote'
 import Single from './Pages/single/Single';
 import './style/dark.scss'
+import Pdf from './Pages/pdf/Pdf';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path=":orderId" element={<Single />} />
             </Route>
             <Route path='/new' element= {<Quote />} />
+            <Route path='/pdf' element= {<Pdf />} />
             
           </Routes>
         </div>

@@ -3,7 +3,10 @@
     border-right: .5px solid rgb(230,227,227);
     min-height: 100vh;
     background-color: rgba(131, 231, 231, 0);
-    
+    .link {
+        text-decoration: none;
+
+    }
 
     .top {
         height: 50px;
@@ -12,7 +15,7 @@
         justify-content: center;
 
         .logo{
-            font-size: 20px;
+            font-size: 32px;
             font-weight: bold;
             color: rgb(255, 119, 0);
         }
@@ -24,6 +27,7 @@
 
     .center{
         padding-left: 10px;
+        
         ul{
             list-style: none;
             margin: 0;
@@ -40,14 +44,16 @@
                 }
                 .icon{
                     font-size: 21px;
+                    color: black;
                     
                 }
                 span{
-                    font-size: 13px;
-                    font-weight: 600;
-                    color: rgb(93, 84, 84);
+                    font-size: 16px;
+                    font-weight: 650;
+                    color: rgb(65, 57, 57);
                     margin-left: 10px;
                     width: max-content;
+                    
                 }
             }
         }
