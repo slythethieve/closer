@@ -1,8 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
-import CompanyDetailsComp from './CompanyDetailsComp';
 import Logo from './Logo';
-import { style } from '@mui/system';
 
 const styles = StyleSheet.create({
    

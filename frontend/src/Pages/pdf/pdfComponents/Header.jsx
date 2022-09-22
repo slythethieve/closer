@@ -1,8 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
-import CompanyDetailsComp from './CompanyDetailsComp';
+import CompanyDetailsRow from './CompanyDetailsRow';
 import Logo from './Logo';
-import { style } from '@mui/system';
 
 const styles = StyleSheet.create({
    
@@ -19,12 +18,12 @@ const styles = StyleSheet.create({
   // Later I will make these contact fields dynamic
   // But for that I need to adjust my db model again 
   // slightly. 
-  const CompanyDetailsColumn = () => (
+  const Header = () => (
     <View style = {styles.container}>
-        <CompanyDetailsComp />
+        <CompanyDetailsRow />
         <Logo />
 
     </View>
     );
   
-  export default CompanyDetailsColumn
+  export default Header

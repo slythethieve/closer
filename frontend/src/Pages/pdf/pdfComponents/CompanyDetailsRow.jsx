@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
     titleContainer:{
         flexDirection: 'column',
         marginTop: 12,
+
+        // This is useful for the table section of the pdf
+        borderColor: 'black',
+        borderWidth: 15
+        
     },
     reportTitle:{
         color: 'black',
@@ -13,6 +18,7 @@ const styles = StyleSheet.create({
         fontSize: 11,
         textAlign: 'left',
         textTransform: 'uppercase',
+        
     }
   });
 
@@ -20,7 +26,7 @@ const styles = StyleSheet.create({
   // Later I will make these contact fields dynamic
   // But for that I need to adjust my db model again 
   // slightly. 
-  const CompanyDetailsComp = () => (
+  const CompanyDetailsRow = () => (
     <View style={styles.titleContainer}>
         <Text style={styles.reportTitle}>Euro Möbel New Line GmbH</Text>
         <Text style={styles.reportTitle}>De Sabato Cosiano</Text>
@@ -30,4 +36,4 @@ const styles = StyleSheet.create({
     </View>
   );
   
-  export default CompanyDetailsComp
+  export default CompanyDetailsRow

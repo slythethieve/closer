@@ -4,7 +4,7 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 
 
-import CompanyDetailsColumn from './pdfComponents/CompanyDetailsColumn';
+import Header from './pdfComponents/Header';
 import ClientDetailsColumn from './pdfComponents/ClientDetailsColumn';
 import DateComponent from './pdfComponents/DateComponent';
 
@@ -12,7 +12,7 @@ import DateComponent from './pdfComponents/DateComponent';
 const styles = StyleSheet.create({
 
   page: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'Courier',
     fontSize: 13,
     paddingTop: 30,
     paddingLeft:30,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 export const QuotePdf = () => (
     <Document>
     <Page size="A4" style={styles.page}>
-      <CompanyDetailsColumn />
+      <Header />
       <DateComponent />
       <ClientDetailsColumn />
     </Page>
