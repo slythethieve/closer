@@ -7,6 +7,7 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import Header from './pdfComponents/Header';
 import ClientDetailsColumn from './pdfComponents/ClientDetailsColumn';
 import DateComponent from './pdfComponents/DateComponent';
+import PDFTable from './pdfComponents/PDFTable';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -14,11 +15,13 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: 'Courier',
     fontSize: 13,
-    paddingTop: 30,
-    paddingLeft:30,
-    paddingRight:60,
+    paddingTop: 40,
+    paddingLeft:40,
+    paddingRight:40,
+    paddingBottom:40,
     lineHeight: 1.5,
     flexDirection: 'column',
+    
   }, 
   
   section: { color: 'black', textAlign: 'center', margin: 20 }
@@ -31,6 +34,7 @@ export const QuotePdf = () => (
       <Header />
       <DateComponent />
       <ClientDetailsColumn />
+      <PDFTable />
     </Page>
   </Document>
 

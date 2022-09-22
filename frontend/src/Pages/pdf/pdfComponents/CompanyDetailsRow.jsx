@@ -7,9 +7,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginTop: 12,
 
-        // This is useful for the table section of the pdf
-        borderColor: 'black',
-        borderWidth: 15
+        
         
     },
     reportTitle:{
