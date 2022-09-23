@@ -13,6 +13,12 @@ import './quote.scss'
 
 const Quote = () => {
 
+    // Ok so I hope my last big challenge will be to modify this file
+    // for the last time. Maybe one more time to handle the client add button. 
+    // I tried modifying how those products field get added to the productFields 
+    // useState, but it's a nightmare. So I thought that maybe I can leave it 
+    // the way it is, and do the sorting inside the onSubmit function instead. 
+
     // Look at the section about the form in the Lama Dev tutorial
     // He actually does something very similar to you. Only with 
     // objects instead of arrays. But I guess it's pretty much the same thing.
@@ -23,17 +29,19 @@ const Quote = () => {
     // 1: placeholder
     // 2: label text
     // 3: element type (input, textArea, etc.)
+    // 4: product name
+    // 5: company this product belongs to
     const products = {
         std_ward: {
-            std_ward_position: ["","Posizione Armadio", "Posizione Armadio", "input"],
-            std_ward_model: ["","Modello", "Modello", "input"],
-            std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante", "input"],
-            std_ward_width: ["", "L. in mm", "Larghezza in millimetri", "input"],
-            std_ward_height: ["", "H. in mm", "Altezza minima in millimetri", "input"],
-            std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input"],
-            std_ward_accessories: ["", "Accessori", "Accessori", "textArea"],
-            std_ward_notes: ["", "Note", "Note", "textArea"],
-            price: ["", "Prezzo", "Prezzo", "input"]
+            std_ward_position: ["","Posizione Armadio", "Posizione Armadio", "input", "std_ward", "euroMoebel"],
+            std_ward_model: ["","Modello", "Modello", "input", "std_ward", "euroMoebel"],
+            std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante", "input", "std_ward", "euroMoebel"],
+            std_ward_width: ["", "L. in mm", "Larghezza in millimetri", "input", "std_ward", "euroMoebel"],
+            std_ward_height: ["", "H. in mm", "Altezza minima in millimetri", "input", "std_ward", "euroMoebel"],
+            std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input", "std_ward", "euroMoebel"],
+            std_ward_accessories: ["", "Accessori", "Accessori", "textArea", "std_ward", "euroMoebel"],
+            std_ward_notes: ["", "Note", "Note", "textArea", "std_ward", "euroMoebel"],
+            price: ["", "Prezzo", "Prezzo", "input", "std_ward", "euroMoebel"]
         },
         roof_pitched_ward: {
             roof_pitched_position: ["","Posizione Armadio", "Posizione Armadio", "input"],
@@ -88,7 +96,8 @@ const Quote = () => {
         plz: ["", "CAP", "CAP", "input"],
         city: ["", "Città", "Città", "input"],
         phone_number: ["", "076 123 45 67", "Numero di Telefono", "input"],
-        email: ["", "paolo.rossi@gmail.com", "Email", "input"]
+        email: ["", "paolo.rossi@gmail.com", "Email", "input"],
+        
         
     }])
 
@@ -111,7 +120,18 @@ const Quote = () => {
                 newProduct = products.plissee
                 break
         }
+        
+        
         setProductFields([...productFields, newProduct])
+        // setProductFields({
+        //     ...productFields,
+        //     euroMoebelProducts: {
+        //         ...productFields.euroMoebelProducts,
+        //         newProduct
+        //     }
+        // })
+        
+        console.log(productFields)
     }
 
     const onChangeHandler = (index, event) => {
@@ -129,6 +149,7 @@ const Quote = () => {
         let quoteData = {}
         let clientInfoData = {}
         let productsInfoData = {}
+        let euroMoebelProducts = {}
 
         Object.entries(productFields[0]).map(([key, value]) => {
             clientInfoData[key] = value[0]
@@ -136,16 +157,33 @@ const Quote = () => {
 
         for (let i = 1; i < productFields.length; i++ ) {
             Object.entries(productFields[i]).map(([key,value]) => {
-                productsInfoData[`product${i}`] = 
-                    {...productsInfoData[`product${i}`],...{
+                // productsInfoData[`product${i}`] = 
+                //     {...productsInfoData[`product${i}`],...{
+                //         [key]: value[0]
+                // }}
+
+                // Ok so this works. Now what if I add another product which is different. 
+                // Maybe I need a couple of variables for each of the companies. 
+                // Let's work this through. I need the following:
+                // - The products should get sorted in the right company. 
+                // - Ideally the indices should be correct for each product type. 
+                
+                euroMoebelProducts[`product_${i}_${value[4]}`] = {
+                    ...euroMoebelProducts[`product_${i}_${value[4]}`], ...{
                         [key]: value[0]
-                }}
+                    }
+                }
+
             })
         }
+
+        productsInfoData["euroMoebelProducts"] = euroMoebelProducts
+
+        console.log(productsInfoData)
         
         quoteData["clientInfo"] = clientInfoData
         quoteData["products"] = productsInfoData
-        dispatch(createQuote(quoteData))
+        //dispatch(createQuote(quoteData))
         
     }
 
@@ -156,8 +194,8 @@ const Quote = () => {
                 <form onSubmit={onSubmit}>
                     <div>
                         {productFields.map((item, index) => (
-                            <div key= {index}>
-                                {Object.entries(item).map(([key, value]) => {
+                                <div key= {index}>
+                                    {Object.entries(item).map(([key, value]) => {
                                     if(value[3] === "input") {
                                         return (
                                             <InputField label={value[2]} placeholder={value[1]} key={key} name={key} value={value[0]} onChange={event => onChangeHandler(index, event)}/>

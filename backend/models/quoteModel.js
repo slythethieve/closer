@@ -5,8 +5,35 @@ const quoteSchema = mongoose.Schema({
         type: Object
     },
     products: {
-        type: Object
-    },
+        euroMoebelProducts: {
+            products: {
+                type: Object
+            },
+            status: {
+                type: String,
+                timestamps: true
+            },
+            isOrder: {
+                type: String,
+                timestamps: true
+            }
+            
+        },
+        goodlineeProducts: {
+            products: {
+                type: Object,
+            },
+            status: {
+                type: String,
+                timestamps: true
+            },
+            isOrder: {
+                type: String,
+                timestamps: true
+            }
+        }
+        
+    }
 },
 {
     timestamps: true

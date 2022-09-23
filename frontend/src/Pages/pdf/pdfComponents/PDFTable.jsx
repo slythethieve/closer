@@ -3,7 +3,7 @@ import {Text, View, StyleSheet } from '@react-pdf/renderer';
 
 import PDFTableHeader from './PDFTableHeader';
 import PDFTableItem from './PDFTableItem';
-
+import PDFTableFooter from './PDFTableFooter';
 // Theoretically I can get away with 29 table rows according to 
 // the invoices I was making in excel. I will test with the values. 
 
@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     <View style = {styles.tableContainer} >
         <PDFTableHeader />
         <PDFTableItem items={items}/>
+        <PDFTableFooter />
     </View>
     );
   
