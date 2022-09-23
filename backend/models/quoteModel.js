@@ -14,7 +14,7 @@ const quoteSchema = mongoose.Schema({
                 timestamps: true
             },
             isOrder: {
-                type: String,
+                type: Boolean,
                 timestamps: true
             }
             
