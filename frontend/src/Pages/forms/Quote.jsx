@@ -12,17 +12,6 @@ import './quote.scss'
 // proper button placement. 
 
 const Quote = () => {
-
-    // Ok so I hope my last big challenge will be to modify this file
-    // for the last time. Maybe one more time to handle the client add button. 
-    // I tried modifying how those products field get added to the productFields 
-    // useState, but it's a nightmare. So I thought that maybe I can leave it 
-    // the way it is, and do the sorting inside the onSubmit function instead. 
-
-    // Look at the section about the form in the Lama Dev tutorial
-    // He actually does something very similar to you. Only with 
-    // objects instead of arrays. But I guess it's pretty much the same thing.
-
     
     // To avoid confusion. The indices in the arrays represent:
     // 0: value
@@ -31,74 +20,76 @@ const Quote = () => {
     // 3: element type (input, textArea, etc.)
     // 4: product name
     // 5: company this product belongs to
+    // 6: Title Lable Text
     const products = {
         std_ward: {
-            std_ward_position: ["","Posizione Armadio", "Posizione Armadio", "input", "std_ward", "euroMoebel"],
-            std_ward_model: ["","Modello", "Modello", "input", "std_ward", "euroMoebel"],
-            std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante", "input", "std_ward", "euroMoebel"],
-            std_ward_width: ["", "L. in mm", "Larghezza in millimetri", "input", "std_ward", "euroMoebel"],
-            std_ward_height: ["", "H. in mm", "Altezza minima in millimetri", "input", "std_ward", "euroMoebel"],
-            std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input", "std_ward", "euroMoebel"],
-            std_ward_accessories: ["", "Accessori", "Accessori", "textArea", "std_ward", "euroMoebel"],
-            std_ward_notes: ["", "Note", "Note", "textArea", "std_ward", "euroMoebel"],
-            price: ["", "Prezzo", "Prezzo", "input", "std_ward", "euroMoebel"]
+            std_ward_position: ["","Posizione Armadio", "Posizione Armadio", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_model: ["","Modello", "Modello", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_finish: ["","Finitura", "Finitura Fianchi/Ante", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_width: ["", "L. in mm", "Larghezza in millimetri", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_height: ["", "H. in mm", "Altezza minima in millimetri", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_depth: ["", "P. in mm", "Profondità in millimetri", "input", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_accessories: ["", "Accessori", "Accessori", "textArea", "std_ward", "euroMoebel", "Armadio Standard"],
+            std_ward_notes: ["", "Note", "Note", "textArea", "std_ward", "euroMoebel", "Armadio Standard"],
+            price: ["", "Prezzo", "Prezzo", "input", "std_ward", "euroMoebel", "Armadio Standard"]
         },
         roof_pitched_ward: {
-            roof_pitched_position: ["","Posizione Armadio", "Posizione Armadio", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_model: ["","Modello", "Modello", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_finish: ["","Finitura", "Finitura Fianchi/Ante", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_width: ["", "L. in mm", "Larghezza in millimetri", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_height_max: ["", "H. max in mm", "Altezza massima in millimetri", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_height_min: ["", "H. min in mm", "Altezza minima in millimetri", "input","roof_pitched_ward", "euroMoebel"],
-            roof_pitched_depth: ["", "P. in mm", "Profondità in millimetri", "input", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_accessories: ["", "Accessori", "Accessori", "textArea", "roof_pitched_ward", "euroMoebel"],
-            roof_pitched_notes: ["", "Note", "Note", "textArea", "roof_pitched_ward", "euroMoebel"],
-            price: ["", "Prezzo", "Prezzo", "input", "roof_pitched_ward", "euroMoebel"]
+            roof_pitched_position: ["","Posizione Armadio", "Posizione Armadio", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_model: ["","Modello", "Modello", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_finish: ["","Finitura", "Finitura Fianchi/Ante", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_width: ["", "L. in mm", "Larghezza in millimetri", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_height_max: ["", "H. max in mm", "Altezza massima in millimetri", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_height_min: ["", "H. min in mm", "Altezza minima in millimetri", "input","roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_depth: ["", "P. in mm", "Profondità in millimetri", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_accessories: ["", "Accessori", "Accessori", "textArea", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            roof_pitched_notes: ["", "Note", "Note", "textArea", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"],
+            price: ["", "Prezzo", "Prezzo", "input", "roof_pitched_ward", "euroMoebel", "Armadio Mansardato"]
         },
         curtain: {
-            curtain_position: ["","Posizione Tenda", "Posizione Tenda", "input", "curtain", "goodlinee"],
-            curtain_width: ["", "L. in mm", "Larghezza in millimetri", "input", "curtain", "goodlinee"],
-            curtain_height_left: ["", "H. sx in mm", "Altezza sinistra in millimetri", "input", "curtain", "goodlinee"],
-            curtain_height_right: ["", "H. dx in mm", "Altezza destra in millimetri", "input", "curtain", "goodlinee"],
-            curtain_fabric: ["", "Stoffa", "Stoffa", "input", "curtain", "goodlinee"],
-            curtain_sewing: ["", "Cucitura", "Cucitura", "input", "curtain", "goodlinee"],
-            curtain_fabric_multiplicator: ["", "Rapporto", "Rapporto", "input", "curtain", "goodlinee"],
-            curtain_notes: ["", "Note", "Note", "textArea", "curtain", "goodlinee"],
-            price: ["", "Prezzo", "Prezzo", "input", "curtain", "goodlinee"]
+            curtain_position: ["","Posizione Tenda", "Posizione Tenda", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_width: ["", "L. in mm", "Larghezza in millimetri", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_height_left: ["", "H. sx in mm", "Altezza sinistra in millimetri", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_height_right: ["", "H. dx in mm", "Altezza destra in millimetri", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_fabric: ["", "Stoffa", "Stoffa", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_sewing: ["", "Cucitura", "Cucitura", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_fabric_multiplicator: ["", "Rapporto", "Rapporto", "input", "curtain", "goodlinee", "Tenda"],
+            curtain_notes: ["", "Note", "Note", "textArea", "curtain", "goodlinee", "Tenda"],
+            price: ["", "Prezzo", "Prezzo", "input", "curtain", "goodlinee", "Tenda"]
         },
         mosquito_net: {
-            mosquito_net_position: ["","Posizione Zanzariera", "Posizione Zanzariera", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_model: ["","Modello", "Modello", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_finish_structure: ["","Colore Struttura", "Colore Struttura", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_finish_net: ["","Colore Rete", "Colore Rete", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_width: ["", "L. in mm", "Larghezza in millimetri", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_height: ["", "H. in mm", "Altezza in millimetri", "input", "mosquito_net", "goodlinee"],
-            mosquito_net_notes: ["", "Note", "Note", "textArea", "mosquito_net", "goodlinee"],
-            price: ["", "Prezzo", "Prezzo", "input", "mosquito_net", "goodlinee"]
+            mosquito_net_position: ["","Posizione Zanzariera", "Posizione Zanzariera", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_model: ["","Modello", "Modello", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_finish_structure: ["","Colore Struttura", "Colore Struttura", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_finish_net: ["","Colore Rete", "Colore Rete", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_width: ["", "L. in mm", "Larghezza in millimetri", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_height: ["", "H. in mm", "Altezza in millimetri", "input", "mosquito_net", "goodlinee", "Zanzariera"],
+            mosquito_net_notes: ["", "Note", "Note", "textArea", "mosquito_net", "goodlinee", "Zanzariera"],
+            price: ["", "Prezzo", "Prezzo", "input", "mosquito_net", "goodlinee", "Zanzariera"]
         },
         plissee: {
-            plissee_position: ["","Posizione Plissée", "Posizione Plissée", "input", "plissee", "goodlinee"],
-            plissee_model: ["","Modello", "Modello", "input", "plissee", "goodlinee"],
-            plissee_finish_structure: ["","Colore Struttura", "Colore Struttura", "input", "plissee", "goodlinee"],
-            plissee_fabric: ["","Articolo Stoffa", "Articolo Stoffa", "input", "plissee", "goodlinee"],
-            plissee_width: ["", "L. in mm", "Larghezza in millimetri", "input", "plissee", "goodlinee"],
-            plissee_height: ["", "H. in mm", "Altezza in millimetri", "input", "plissee", "goodlinee"],
-            plissee_notes: ["", "Note", "Note", "textArea", "plissee", "goodlinee"],
-            price: ["", "Prezzo", "Prezzo", "input", "plissee", "goodlinee"]
+            plissee_position: ["","Posizione Plissée", "Posizione Plissée", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_model: ["","Modello", "Modello", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_finish_structure: ["","Colore Struttura", "Colore Struttura", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_fabric: ["","Articolo Stoffa", "Articolo Stoffa", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_width: ["", "L. in mm", "Larghezza in millimetri", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_height: ["", "H. in mm", "Altezza in millimetri", "input", "plissee", "goodlinee", "Plissée"],
+            plissee_notes: ["", "Note", "Note", "textArea", "plissee", "goodlinee", "Plissée"],
+            price: ["", "Prezzo", "Prezzo", "input", "plissee", "goodlinee", "Plissée"]
         },
     }
     
     // By default we want to see the client info form
+    // The empty string field are there to match the index of the Title Lable Text 
+    // It's not the greatest solution, but it works for now.
+    // Technically speaking I don't even need to put them in every field. I did anyway
     const [productFields, setProductFields] = useState([{
-        firstName: ["", "Nome", "Nome", "input"],
-        lastName: ["", "Cognome", "Cognome", "input"],
-        address: ["", "Indirizzo", "Indirizzo", "input"],
-        plz: ["", "CAP", "CAP", "input"],
-        city: ["", "Città", "Città", "input"],
-        phone_number: ["", "076 123 45 67", "Numero di Telefono", "input"],
-        email: ["", "paolo.rossi@gmail.com", "Email", "input"],
-        
-        
+        firstName: ["", "Nome", "Nome", "input", "", "", "Dati Cliente"],
+        lastName: ["", "Cognome", "Cognome", "input", "", "", "Dati Cliente"],
+        address: ["", "Indirizzo", "Indirizzo", "input", "", "", "Dati Cliente"],
+        plz: ["", "CAP", "CAP", "input", "", "", "Dati Cliente"],
+        city: ["", "Città", "Città", "input", "", "", "Dati Cliente"],
+        phone_number: ["", "076 123 45 67", "Numero di Telefono", "input", "", "", "Dati Cliente"],
+        email: ["", "paolo.rossi@gmail.com", "Email", "input", "", "", "Dati Cliente"],
     }])
 
     const onClick = (event) => {
@@ -123,15 +114,8 @@ const Quote = () => {
         
         
         setProductFields([...productFields, newProduct])
-        // setProductFields({
-        //     ...productFields,
-        //     euroMoebelProducts: {
-        //         ...productFields.euroMoebelProducts,
-        //         newProduct
-        //     }
-        // })
-        
-        //console.log(productFields)
+
+        console.log(productFields)
     }
 
     const onChangeHandler = (index, event) => {
@@ -142,7 +126,6 @@ const Quote = () => {
 
     const dispatch = useDispatch()
 
-    // Submit works exactly like I wanted it to. 
     const onSubmit = (event) => {
         event.preventDefault()
 
@@ -166,17 +149,6 @@ const Quote = () => {
 
         for (let i = 1; i < productFields.length; i++ ) {
             Object.entries(productFields[i]).map(([key,value]) => {
-                // productsInfoData[`product${i}`] = 
-                //     {...productsInfoData[`product${i}`],...{
-                //         [key]: value[0]
-                // }}
-
-                // Ok so this works. Now what if I add another product which is different. 
-                // Maybe I need a couple of variables for each of the companies. 
-                // Let's work this through. I need the following:
-                // - The products should get sorted in the right company. 
-                // - Ideally the indices should be correct for each product type. 
-
                 if (value[5]==="euroMoebel") {
                     euroMoebelProducts.products[`product_${i}_${value[4]}`] = {
                         ...euroMoebelProducts.products[`product_${i}_${value[4]}`], ...{
@@ -190,8 +162,6 @@ const Quote = () => {
                         }
                     }
                 }
-                
-
             })
         }
 
@@ -202,12 +172,8 @@ const Quote = () => {
         goodlineeProducts["status"] = status
         goodlineeProducts["isOrder"] = isOrder
 
-        
-
         productsInfoData["euroMoebelProducts"] = euroMoebelProducts
         productsInfoData["goodlineeProducts"] = goodlineeProducts
-
-        //console.log(productsInfoData)
         
         quoteData["clientInfo"] = clientInfoData
         quoteData["products"] = productsInfoData
@@ -223,6 +189,7 @@ const Quote = () => {
                     <div>
                         {productFields.map((item, index) => (
                                 <div key= {index}>
+                                    <label className='labelTitle'>{Object.values(item)[0][6]}</label>
                                     {Object.entries(item).map(([key, value]) => {
                                     if(value[3] === "input") {
                                         return (

@@ -16,7 +16,9 @@ const setQuote = asyncHandler(async (req, res) => {
 
   const quote = await Quote.create({
     clientInfo: req.body.clientInfo,
-    products: req.body.products
+    products: req.body.products,
+    date: req.body.date
+
   })
   res.status(200).json(quote)
 })
