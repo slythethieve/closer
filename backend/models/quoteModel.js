@@ -11,11 +11,11 @@ const quoteSchema = mongoose.Schema({
             },
             status: {
                 type: String,
-                timestamps: true
+                default: "offer"
             },
             isOrder: {
                 type: Boolean,
-                timestamps: true
+                default: false
             }
             
         },
@@ -25,11 +25,11 @@ const quoteSchema = mongoose.Schema({
             },
             status: {
                 type: String,
-                timestamps: true
+                default: "offer"
             },
             isOrder: {
-                type: String,
-                timestamps: true
+                type: Boolean,
+                default: false
             }
         }
         
