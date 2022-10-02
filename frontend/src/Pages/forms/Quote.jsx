@@ -83,10 +83,6 @@ const Quote = () => {
     // It's not the greatest solution, but it works for now.
     // Technically speaking I don't even need to put them in every field. I did anyway
     const [productFields, setProductFields] = useState([{
-
-        // Eliminate those fields at some point. It's much simpler to have a unique name field. 
-        //firstName: ["", "Nome", "Nome", "input", "", "", "Dati Cliente"],
-        //lastName: ["", "Cognome", "Cognome", "input", "", "", "Dati Cliente"],
         name: ["", "Nome", "Nome", "input", "", "", "Dati Cliente"],
         address: ["", "Indirizzo", "Indirizzo", "input", "", "", "Dati Cliente"],
         plz: ["", "CAP", "CAP", "input", "", "", "Dati Cliente"],
@@ -121,10 +117,6 @@ const Quote = () => {
         console.log(productFields)
     }
 
-    const onClickCompany = (event) => {
-
-    }
-
     const onChangeHandler = (index, event) => {
         let data = [...productFields]
         data[index][event.target.name][0] = event.target.value
@@ -138,10 +130,7 @@ const Quote = () => {
 
         let quoteData = {}
         let clientInfoData = {}
-        let productsInfoData = {
-            company: ""
-        }
-        let company = ""
+        let productsInfoData = {}
         let euroMoebelProducts = {
             products: {
 
@@ -165,20 +154,15 @@ const Quote = () => {
                             [key]: value[0]
                         }
                     }
-                    // Really bad to put it here, since it's going to get overwritten a bunch of times with the same value.
-                    company = "euroMoebel"
                 }else {
                     goodlineeProducts.products[`product_${i}_${value[4]}`] = {
                         ...goodlineeProducts.products[`product_${i}_${value[4]}`], ...{
                             [key]: value[0]
                         }
                     }
-                    company = "goodlinee"
                 }
             })
         }
-
-        productsInfoData.company = company
 
         let status = "offer"
         let isOrder = false
@@ -196,7 +180,6 @@ const Quote = () => {
         
     }
 
-    const [productButtons, setShowProductButtons] = useState(false)
 
     return (
         <div className='quote'>
@@ -224,26 +207,26 @@ const Quote = () => {
                     <input className="button" type="submit"></input>
                 </form>
                 <div className='buttonDiv'>
-                <button
-                    onClick = {onClick}
-                    className='button' 
-                    name="std_ward">Armadio Standard</button>
-                <button 
-                    onClick = {onClick}
-                    className='button' 
-                    name="roof_pitched_ward">Armdadio Mansardato</button>
-                <button 
-                    onClick = {onClick}
-                    className='button'
-                    name="curtain">Tenda</button>
-                <button 
-                    onClick = {onClick}
-                    className='button'
-                    name ="mosquito_net">Zanzariera</button>
-                <button 
-                    onClick = {onClick}
-                    className='button'
-                    name ="plissee">Plissée</button>
+                    <button
+                        onClick = {onClick}
+                        className='button' 
+                        name="std_ward">Armadio Standard</button>
+                    <button 
+                        onClick = {onClick}
+                        className='button' 
+                        name="roof_pitched_ward">Armdadio Mansardato</button>
+                    <button 
+                        onClick = {onClick}
+                        className='button'
+                        name="curtain">Tenda</button>
+                    <button 
+                        onClick = {onClick}
+                        className='button'
+                        name ="mosquito_net">Zanzariera</button>
+                    <button 
+                        onClick = {onClick}
+                        className='button'
+                        name ="plissee">Plissée</button>
                 </div>
             </div>
         </div>

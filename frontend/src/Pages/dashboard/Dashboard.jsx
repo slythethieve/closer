@@ -22,6 +22,8 @@ function Dashboard() {
 
   const dispatch = useDispatch()
 
+  const [goodlineeEntries, setGoodlineeEntries] = useState([])
+
   const [total, setTotal] = useState(0)
   const [numberOfClients, setNumberOfClients] = useState(0)
 
@@ -40,8 +42,36 @@ function Dashboard() {
     
     calculateTotal(quote)
     setNumberOfClients(quote.length)
+    //test(quote)
     
   }, [quote.length, isError, message, dispatch])
+
+
+  // I want to try and calculate the number of offers that belong to one company or the other
+
+  // So I think I made it work
+  const test = (quote) => {
+    let k = 0
+    for (let i = 0; i < quote.length; i++) {
+      try {
+        for (let j= 0; j< Object.values(quote[i].products.euroMoebelProducts.products).length; j++) {
+        
+        
+        //console.log(Object.values(quote[i].products.goodlineeProducts.products))
+        //console.log(k)
+        k++
+        
+        }
+      } catch (error) {
+        
+      }
+      
+    }
+
+    return k;
+    
+    
+  }
 
   // Total revenue
   const calculateTotal = (quote) => {
@@ -49,7 +79,7 @@ function Dashboard() {
     for (let i = 0; i < quote.length; i++) {
       for (let j= 0; j< Object.values(quote[i].products).length; j++) {
         
-        totalRev = totalRev + Number(Object.values(quote[i].products)[j].price)
+        totalRev = totalRev + (Number(Object.values(quote[i].products)[j].price) || 0)
         
       }
     }
@@ -63,7 +93,7 @@ function Dashboard() {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="invoices" total={numberOfClients}/>
+          <Widget type="invoices" total={test(quote)}/>
           <Widget type="contracts" total = {numberOfClients}/>
           <Widget type="revenue" total ={total}/>
           <Widget type="clients" total ={numberOfClients}/>

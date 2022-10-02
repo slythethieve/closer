@@ -31,6 +31,9 @@ const getQuotes = async (token) => {
   
   //console.log(response.data[0].clientInfo.firstName)
   //console.log(response.data[0].products.product1.price)
+
+  // I want to try and see if I can return what I want from here. If so,
+  // I can define all my functions in here.
   
 
   return response.data
