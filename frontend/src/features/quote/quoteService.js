@@ -17,6 +17,9 @@ const createQuote = async (quoteData, token) => {
 
 // Update, delete are still missing here. 
 
+
+
+
 // Get all quotes
 const getQuotes = async (token) => {
   const config = {
@@ -26,9 +29,7 @@ const getQuotes = async (token) => {
   }
 
   const response = await axios.get(API_URL, config)
-
-  
-  
+ 
   //console.log(response.data[0].clientInfo.firstName)
   //console.log(response.data[0].products.product1.price)
 
@@ -47,12 +48,14 @@ const getQuotesNumber = async (token) => {
     }
   }
   const response = await axios.get(API_URL, config)
+  
   return response.data
 }
 
 const quoteService = {
   createQuote,
-  getQuotes
+  getQuotes,
+  
 }
 
 export default quoteService

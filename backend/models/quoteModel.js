@@ -44,4 +44,5 @@ const quoteSchema = mongoose.Schema({
     timestamps: true
 })
 
+
 module.exports = mongoose.model('Quote', quoteSchema)

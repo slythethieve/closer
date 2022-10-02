@@ -5,6 +5,7 @@ import FeaturedChart from "../../components/featuredChart/FeaturedChart"
 import Chart from "../../components/chart/Chart"
 import TableComponent from "../../components/table/TableComponent"
 import "./dashboard.scss"
+import axios from 'axios'
 
 // Ok so let's think about this for a hot minute. 
 // I need a bunch of functions for fetching data from the db and show it 
@@ -19,6 +20,30 @@ import { useEffect, useState } from 'react'
 
 
 function Dashboard() {
+
+
+  
+  
+  // Date stuff
+  
+  let date = new Date()
+  
+  console.log("Before " + Date.parse(date))
+  let year = date.getFullYear()
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  // + 1 because it starts at 0. That is dumb for sure. 
+  let currentMonth = date.getMonth() + 1,
+      previousMonth_1 = date.getMonth()
+  // OK OK so with this I can get to a month before my current date. 
+  // How can I get to the start of the month tho?
+  let testsuperDate = date.setMonth(date.getMonth()-1)
+  console.log("after " + testsuperDate)
+  
+
+  
+
+
+  
 
   const dispatch = useDispatch()
 
@@ -43,14 +68,27 @@ function Dashboard() {
     calculateTotal(quote)
     setNumberOfClients(quote.length)
     //test(quote)
+    testDate(quote)
     
   }, [quote.length, isError, message, dispatch])
 
 
+
+  const testDate = (quote) => {
+    for (let i = 0; i < quote.length; i++) {
+      //console.log(quote[i].date)
+      //console.log(Date.parse(quote[i].date))
+      if (Date.parse(quote[i].date) < date) {
+        //console.log(quote[i])
+      } 
+    }
+   }
   // I want to try and calculate the number of offers that belong to one company or the other
 
   // So I think I made it work
   const test = (quote) => {
+    
+
     let k = 0
     for (let i = 0; i < quote.length; i++) {
       try {
@@ -73,7 +111,7 @@ function Dashboard() {
     
   }
 
-  // Total revenue
+  // Total revenue. With the new db schema I also need to change this one. 
   const calculateTotal = (quote) => {
     let totalRev = 0
     for (let i = 0; i < quote.length; i++) {
