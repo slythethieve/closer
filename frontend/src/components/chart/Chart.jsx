@@ -36,7 +36,7 @@ const data = [
     euroMoebel: 24000,
   }
 ];
-function Chart() {
+function Chart({pastRevenue}) {
   return (
     <div className="chart">
       <div className="title">Fatturato ditte ultimi 6 mesi</div>

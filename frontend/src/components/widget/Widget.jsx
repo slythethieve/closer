@@ -11,6 +11,7 @@ function Widget({type, total}) {
     let data;
     const amount = 100
     const diff = 20
+    console.log(total)
     switch(type) {
         case "invoices":
             data = {
@@ -42,7 +43,7 @@ function Widget({type, total}) {
                 icon: (
                     <PointOfSaleIcon className="icon" />
                 ),
-                amount: total
+                amount: total[2]
             }
             break;
         case "clients":
