@@ -11,39 +11,40 @@ function Widget({type, total}) {
     let data;
     const amount = 100
     const diff = 20
-    console.log(total)
+    
     switch(type) {
         case "invoices":
             data = {
-                title: "NUMERO OFFERTE",
+                title: "NUMERO OFFERTE MESE CORRENTE",
                 isMoney: false,
                 link: "Vedi tutte le offerte",
                 icon: (
                     <SummarizeIcon className="icon" />
                 ),
-                amount: total
+                amount: total[0].length,
+                
             }
             break;
         case "contracts":
             data = {
-                title: "NUMERO CONTRATTI",
+                title: "NUMERO CONTRATTI MESE CORRENTE",
                 isMoney: false,
                 link: "Vedi tutte i contratti",
                 icon: (
                     <RequestPageIcon className="icon" />
                 ),
-                amount: total
+                amount: total[0]
             }
             break;
         case "revenue":
             data = {
-                title: "FATTURATO",
+                title: "FATTURATO MESE CORRENTE",
                 isMoney: true,
                 link: "Vedi lo sviluppo del fatturato",
                 icon: (
                     <PointOfSaleIcon className="icon" />
                 ),
-                amount: total[2]
+                amount: total[0]
             }
             break;
         case "clients":

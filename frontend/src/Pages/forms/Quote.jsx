@@ -7,6 +7,7 @@ import TextArea from './TextArea';
 import InputField from './InputField';
 import './form.scss'
 import './quote.scss'
+import { Checkbox } from '@mui/material';
 
 // TODO: Put another div with better styling for
 // proper button placement. 
@@ -203,6 +204,11 @@ const Quote = () => {
                                 })}
                                 </div>
                         ))}
+                        <div>
+                            <label>Ordine?</label>
+                            <Checkbox label ="Ordine?"></Checkbox>
+                        </div>
+                        
                     </div>
                     <input className="button" type="submit"></input>
                 </form>

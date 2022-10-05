@@ -4,17 +4,14 @@ import Widget from "../../components/widget/Widget"
 import FeaturedChart from "../../components/featuredChart/FeaturedChart"
 import Chart from "../../components/chart/Chart"
 import TableComponent from "../../components/table/TableComponent"
-import "./dashboard.scss"
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuotes } from '../../features/quote/quoteSlice';
 import { useEffect, useState } from 'react'
-
+import "./dashboard.scss"
 
 function Dashboard() {
 
 	const dispatch = useDispatch()
-
-  	//const [goodlineeEntries, setGoodlineeEntries] = useState([])
 
 	// Change these names to better ones.
 	const [total, setTotal] = useState(0)
@@ -23,27 +20,13 @@ function Dashboard() {
 	const { quote, isLoading, isError, message } = useSelector((state) =>
 		state.quotes)
 
-	let testRevenue = []
-
 	useEffect(() => {
 
 		if (isError) {
 		console.log(message)
 		}
 
-
 		dispatch(getQuotes())
-
-
-		calculateTotal(quote)
-		setNumberOfClients(quote.length)
-		test(quote)
-		//testDate(quote)
-		//graph(quote)
-		//calculatePastRevenueGoodlinee(sortOnDateGoodlinee(sortEntriesIntoGoodlinee(quote)))
-		//testRevenue = calculatePastRevenueGoodlinee(sortOnDateGoodlinee(sortEntriesIntoGoodlinee(quote)))
-		//console.log(testRevenue)
-		
 		
 
 	}, [quote.length, isError, message, dispatch])
@@ -55,8 +38,6 @@ function Dashboard() {
 	const fistDayPrevMonth_4 = new Date(date.getFullYear(), date.getMonth() -4, 1)
 	const fistDayPrevMonth_5 = new Date(date.getFullYear(), date.getMonth() -5, 1)
 	const fistDayPrevMonth_6 = new Date(date.getFullYear(), date.getMonth() -6, 1)
-
-
 
 	const sortEntriesIntoGoodlinee = (quote) => {
 		let entries = []
@@ -73,7 +54,23 @@ function Dashboard() {
 		return entries
 	}
 
-	const sortOnDateGoodlinee = (companyEntries) => {
+
+	const sortEntriesIntoEuroMoebel = (quote) => {
+		let entries = []
+		for (let i = 0; i < quote.length; i++) {
+			try {
+				if(Object.values(quote[i].products.euroMoebelProducts.products).length > 0) {
+					entries.push(quote[i])
+				}
+			} catch (error) {
+				
+			}
+			
+		}
+		return entries
+	}
+
+	const sortOnDate = (companyEntries) => {
 		let prevMonths = []
 		let currentMonth = []
 		let prevMonth1 = []
@@ -116,20 +113,64 @@ function Dashboard() {
 		return prevMonths
 	}
 
-	// This calculates the revenue of teh last 6 months and also the current month. 
+	
+	const calculateNumberOfOrdersGoodlinee = (goodlineeEntriesSortedByDates) => {
+		let pastNumberOfOrders = []
+
+		for (let i = 0; i < goodlineeEntriesSortedByDates.length; i ++) {
+			let tempTotal = 0
+			for (let j = 0; j < goodlineeEntriesSortedByDates[i].length; j++) {
+				if(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.isOrder) {
+					tempTotal++
+				}
+			}
+			pastNumberOfOrders.push(tempTotal)
+		}
+
+		return pastNumberOfOrders
+	}
+	const calculateNumberOfOrdersEuroMoebel = (euroMoebelEntriesSortedByDates) => {
+		let pastNumberOfOrders = []
+
+		for (let i = 0; i < euroMoebelEntriesSortedByDates.length; i ++) {
+			let tempTotal = 0
+			for (let j = 0; j < euroMoebelEntriesSortedByDates[i].length; j++) {
+				if(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.isOrder) {
+					tempTotal++
+				}
+			}
+			pastNumberOfOrders.push(tempTotal)
+		}
+
+		return pastNumberOfOrders
+	}
 	const calculatePastRevenueGoodlinee = (goodlineeEntriesSortedByDates) => {
 		let pastRevenue6Months = []
 
-		// Here I'm iterating through the months
 		for (let i = 0; i < goodlineeEntriesSortedByDates.length; i ++) {
-			// Here through the entries of each month
 			let tempTotal = 0
 			for (let j = 0; j < goodlineeEntriesSortedByDates[i].length; j++) {
-				// Here I'm looking at a particular entry
 				if(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.isOrder) {
 					for (let k = 0; k < Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products).length; k++) {
-					//console.log(Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products)[k].price)
 					tempTotal = tempTotal + (Number(Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products)[k].price) || 0)
+					}
+				}
+			}
+			pastRevenue6Months.push(tempTotal)
+		}
+
+		return pastRevenue6Months
+	}
+
+	const calculatePastRevenueEuroMoebel = (euroMoebelEntriesSortedByDates) => {
+		let pastRevenue6Months = []
+
+		for (let i = 0; i < euroMoebelEntriesSortedByDates.length; i ++) {
+			let tempTotal = 0
+			for (let j = 0; j < euroMoebelEntriesSortedByDates[i].length; j++) {
+				if(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.isOrder) {
+					for (let k = 0; k < Object.values(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.products).length; k++) {
+					tempTotal = tempTotal + (Number(Object.values(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.products)[k].price) || 0)
 					}
 				}
 			}
@@ -184,24 +225,38 @@ function Dashboard() {
 		setTotal(totalRev)
 	}
 
+
 	return (
 		<div className="dashboard">
 		<Sidebar />
 		<div className="homeContainer">
 			<Navbar />
+			<label className="companyTitle">Goodlinee</label>
 			<div className="widgets">
-			<Widget type="invoices" total={0} />
-			<Widget type="contracts" total={test(quote)} />
-			<Widget type="revenue" total={calculatePastRevenueGoodlinee(sortOnDateGoodlinee(sortEntriesIntoGoodlinee(quote)))} />
-			<Widget type="clients" total={numberOfClients} />
+				<Widget type="invoices" total={sortOnDate(sortEntriesIntoGoodlinee(quote))} />
+				<Widget type="contracts" total={calculateNumberOfOrdersGoodlinee(sortOnDate(sortEntriesIntoGoodlinee(quote)))} />
+				<Widget type="revenue" total={calculatePastRevenueGoodlinee(sortOnDate(sortEntriesIntoGoodlinee(quote)))} />
+			</div>
+			<div className="charts">
+			<FeaturedChart total={calculatePastRevenueGoodlinee(sortOnDate(sortEntriesIntoGoodlinee(quote)))} />
+			<Chart />
+			</div>
+			<label className="companyTitle">EuroMoebel</label>
+			<div className="widgets">
+				<Widget type="invoices" total={sortOnDate(sortEntriesIntoEuroMoebel(quote))} />
+				<Widget type="contracts" total={calculateNumberOfOrdersEuroMoebel(sortOnDate(sortEntriesIntoEuroMoebel(quote)))} />
+				<Widget type="revenue" total={calculatePastRevenueEuroMoebel(sortOnDate(sortEntriesIntoEuroMoebel(quote)))} />
 			</div>
 			<div className="charts">
 			<FeaturedChart total={total} />
 			<Chart />
 			</div>
-			<div className="listContainer">
-			<TableComponent />
-			</div>
+			{/*
+				<div className="listContainer">
+				<TableComponent />
+				</div>
+			*/}
+			
 		</div>
 		</div>
 	)

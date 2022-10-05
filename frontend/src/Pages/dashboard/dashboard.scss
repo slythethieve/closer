@@ -5,6 +5,15 @@
     .homeContainer {
         flex: 6;
 
+        .companyTitle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 26px;
+            font-weight: 700;
+            margin-left: 20px;
+            color: grey;
+        }
         .widgets,
         .charts{
             display: flex;

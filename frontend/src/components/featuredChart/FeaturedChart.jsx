@@ -16,13 +16,13 @@ import "./featuredChart.scss"
 function FeaturedChart({total}) {
 
   // This can be changed and made dynamic of course. But let's just pick a number.
-  const target = 100000
+  const target = 40000
   const result = total/target*100
 
   return (
     <div className="featured">
       <div className="top">
-        <h1 className="title">Fatturato di questo mese</h1>
+        <h1 className="title">Target fatturato mese corrente</h1>
         <MoreVertIcon fontSize='small'/>
       </div>
       <div className="bottom">
