@@ -16,8 +16,9 @@ import "./featuredChart.scss"
 function FeaturedChart({total}) {
 
   // This can be changed and made dynamic of course. But let's just pick a number.
-  const target = 40000
-  const result = total/target*100
+  const target = 10000
+  const result = Math.round(Number(total[0])/target*100)
+  console.log(result)
 
   return (
     <div className="featured">
@@ -38,43 +39,9 @@ function FeaturedChart({total}) {
             })} />
         </div>
         <p className='title'>Toale fattura di questo mese</p>
-        <p className='amount'>CHF 2000</p>
+        <p className='amount'>CHF {total[0]}</p>
         <p className='desc'>Some basic description. No idea if it's going to be needed</p>
-        <div className='summary'>
-          <div className='item'>
-              <div className='itemTitle'>
-                Target mensile
-                <div className='itemResult negative'>
-                  <KeyboardArrowDownIcon fontSize='small'/>
-                  <div className='resultAmount'>
-                  CHF. 20000
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div className='item'>
-              <div className='itemTitle'>
-                Target annuale
-                <div className='itemResult positive'>
-                  <KeyboardArrowUpIcon fontSize='small'/>
-                  <div className='resultAmount'>
-                  CHF. 20000
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div className='item'>
-              <div className='itemTitle'>
-                Target del non lo so
-                <div className='itemResult positive'>
-                  <KeyboardArrowUpIcon fontSize='small'/>
-                  <div className='resultAmount'>
-                  CHF. 20000
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   )

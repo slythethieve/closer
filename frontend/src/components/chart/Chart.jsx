@@ -2,44 +2,43 @@ import "./chart.scss"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
-const data = [
-  {
-    name: 'Gennaio',
-    goodlinee: 24000,
-    euroMoebel: 39000,
-    
-  },
-  {
-    name: 'Febbraio',
-    goodlinee: 32000,
-    euroMoebel: 36000,
-  },
-  {
-    name: 'Marzo',
-    goodlinee: 40000,
-    euroMoebel: 24000,
 
-  },
-  {
-    name: 'Aprile',
-    goodlinee: 50000,
-    euroMoebel: 44000,
-  },
-  {
-    name: 'Maggio',
-    goodlinee: 40000,
-    euroMoebel: 13000,
-  },
-  {
-    name: 'Giugno',
-    goodlinee: 23000,
-    euroMoebel: 24000,
-  }
-];
-function Chart({pastRevenue}) {
+function Chart({revenue}) {
+
+  const date = new Date()
+
+  let index = date.getMonth() - 6
+  const months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+  let data = [
+    {
+      name: months[index],
+      value: revenue[1]
+    },
+    {
+      name: months[index + 1],
+      value: revenue[2]
+    },
+    {
+      name: months[index + 2],
+      value: revenue[3]
+    },
+    {
+      name: months[index + 3],
+      value: revenue[4]
+    },
+    {
+      name: months[index + 4],
+      value: revenue[5]
+    },
+    {
+      name: months[index + 5],
+      value: revenue[6]
+    },
+  ]
+  
   return (
     <div className="chart">
-      <div className="title">Fatturato ditte ultimi 6 mesi</div>
+      <div className="title">Fatturato ultimi 6 mesi</div>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart width={730} height={250} data={data}
           margin={{ top: 30, right: 30, left: 0, bottom: 0 }}>
@@ -58,7 +57,7 @@ function Chart({pastRevenue}) {
           <CartesianGrid strokeDasharray="3 3" className="chartsGrid"/>
           <Tooltip />
           <Area type="monotone" dataKey="goodlinee" stroke="#8884d8" fillOpacity={1} fill="url(#colorGood)" />
-          <Area type="monotone" dataKey="euroMoebel" stroke="#000000" fillOpacity={1} fill="url(#colorEuro)" />
+          <Area type="monotone" dataKey="value" stroke="#000000" fillOpacity={1} fill="url(#colorEuro)" />
         </AreaChart>
       </ResponsiveContainer>
     </div>

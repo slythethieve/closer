@@ -14,6 +14,7 @@ function Dashboard() {
 	const dispatch = useDispatch()
 
 	// Change these names to better ones.
+	// In fact let's have a bunch of useState here. Just make sure to not spread the result. Just assign at the end of the functions you have already implemented. 
 	const [total, setTotal] = useState(0)
 	const [numberOfClients, setNumberOfClients] = useState(0)
 
@@ -53,7 +54,6 @@ function Dashboard() {
 		}
 		return entries
 	}
-
 
 	const sortEntriesIntoEuroMoebel = (quote) => {
 		let entries = []
@@ -113,7 +113,6 @@ function Dashboard() {
 		return prevMonths
 	}
 
-	
 	const calculateNumberOfOrdersGoodlinee = (goodlineeEntriesSortedByDates) => {
 		let pastNumberOfOrders = []
 
@@ -239,7 +238,7 @@ function Dashboard() {
 			</div>
 			<div className="charts">
 			<FeaturedChart total={calculatePastRevenueGoodlinee(sortOnDate(sortEntriesIntoGoodlinee(quote)))} />
-			<Chart />
+			<Chart revenue = {calculatePastRevenueGoodlinee(sortOnDate(sortEntriesIntoGoodlinee(quote)))}/>
 			</div>
 			<label className="companyTitle">EuroMoebel</label>
 			<div className="widgets">
@@ -248,8 +247,8 @@ function Dashboard() {
 				<Widget type="revenue" total={calculatePastRevenueEuroMoebel(sortOnDate(sortEntriesIntoEuroMoebel(quote)))} />
 			</div>
 			<div className="charts">
-			<FeaturedChart total={total} />
-			<Chart />
+			<FeaturedChart total={calculatePastRevenueEuroMoebel(sortOnDate(sortEntriesIntoEuroMoebel(quote)))} />
+			<Chart revenue = {calculatePastRevenueEuroMoebel(sortOnDate(sortEntriesIntoEuroMoebel(quote)))}/>
 			</div>
 			{/*
 				<div className="listContainer">
