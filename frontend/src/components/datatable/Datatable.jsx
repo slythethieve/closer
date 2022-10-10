@@ -3,20 +3,20 @@ import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { userColumns, userRows} from '../../dataTableFakeData'
 import { Link} from "react-router-dom"
-//import TableComponent from '../../components/table/TableComponent'
 
 function Datatable({quote}) {
 
-  console.log(quote)
+  
   const actionColumn = [
     {
       field: "action",
       headerName: "Azioni",
       width: 200,
-      renderCell: () => {
+      renderCell: (params) => {
+        const {row} = params
         return(
           <div className='cellAction'>
-            <Link to="/orders/test">
+            <Link to={`/orders/${row.id}`} state={{ testValue: "hello"}}>
               <div className='viewButton'>Vedi dettagli</div>
             </Link>
             
@@ -27,6 +27,7 @@ function Datatable({quote}) {
     }
   ]
 
+  
   const test = quote.map((row) => {
     return {
       id: row._id,
@@ -44,9 +45,10 @@ function Datatable({quote}) {
         // Maybe I can make use of this in other parts of my program. 
         // If you think about it's obvious, they are just arrays. 
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={17}
+        rowsPerPageOptions={[17]}
         checkboxSelection
+        
       />
     </div>
   )

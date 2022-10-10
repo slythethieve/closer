@@ -24,6 +24,8 @@ function List() {
 
 	}, [quote.length, isError, message, dispatch])
 
+  
+
   return (
     <div className='list'>
         <Sidebar />

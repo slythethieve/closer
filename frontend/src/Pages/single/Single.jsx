@@ -3,8 +3,11 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import TableComponent from "../../components/table/TableComponent";
+import { useLocation } from "react-router-dom";
 
 const Single = () => {
+  const location = useLocation()
+  console.log(location.state.testValue)
   return (
     <div className="single">
       <Sidebar />
