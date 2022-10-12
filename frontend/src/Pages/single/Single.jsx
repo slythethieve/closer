@@ -1,34 +1,49 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import InputField from '../forms/InputField';
 import TableComponent from "../../components/table/TableComponent";
 import { useLocation } from "react-router-dom";
+import { Fragment, useState } from "react";
+import unique_key from "../../utils/unique_key";
 
-// This works fine if access this page from the orders view, but if we instead 
-// input the page directly providing the id it does not work. Same thing might happen
-// with the pdf generation. 
-
-// So now I need to display the details of an order. I already have dispayed the client details. 
 
 const Single = () => {
+
+
   const location = useLocation() 
   const quote = location.state.quote
 
-  if (quote[0].products) {
-    console.log("Yo")
-  }else {
-    console.log("no")
-  }
-
   const renderProducts = () => {
+
+    let finalValues = []
+    if (quote[0].products.euroMoebelProducts.products) {
+      let valuesEM = Object.entries(Object.values(quote[0].products.euroMoebelProducts.products)[0])
+      for(let i = 0; i < valuesEM.length; i++) {
+        finalValues.push(
+          <div key= {unique_key()}>
+            <span>{valuesEM[i][0]}: </span>
+            <span>{valuesEM[i][1]}</span>
+          </div>
+        )
+      }
+    }
+    if (quote[0].products.goodlineeProducts.products) {
+      let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products)[0])
+      for(let i = 0; i < valuesGood.length; i++) {
+        finalValues.push(
+          <div key= {unique_key()}>
+            <span className="test">{valuesGood[i][0]}: </span>
+            <span>{valuesGood[i][1]}</span>
+          </div>
+        )
+      }
+    }
+    return finalValues
     
   }
 
-  // So this checks if there is any product inside this category.
-  // Actually I could maybe put this directly down below with a map.
-  if (quote[0].products.goodlineeProducts.products) {
-    
-  }
+  
 
 
   return (
@@ -68,12 +83,13 @@ const Single = () => {
                   <span className="itemKey">Città:</span>
                   <span className="itemValue">{quote[0].clientInfo.city}</span>
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
         <div className="bottom">
-          {}
+          {renderProducts()}
         </div>
       </div>
     </div>
