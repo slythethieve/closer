@@ -1,16 +1,13 @@
 import { useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { createQuote, getQuotes } from '../../features/quote/quoteSlice';
-import unique_key from '../../utils/unique_key';
+import { createQuote} from '../../features/quote/quoteSlice';
 import Sidebar from '../../components/sidebar/Sidebar'
 import TextArea from './TextArea';
 import InputField from './InputField';
 import './form.scss'
 import './quote.scss'
-import { Checkbox } from '@mui/material';
 
-// TODO: Put another div with better styling for
-// proper button placement. 
+// TODO: eliminate prevent default and also use useNavigate to move back to dashboard once submitted. 
 
 const Quote = () => {
     

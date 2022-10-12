@@ -36,12 +36,6 @@ function Sidebar() {
                 </Link>
 
                 <li>
-                    <PeopleIcon className="icon"/>
-                    <span>Clienti</span>
-                </li>
-
-
-                <li>
                     <LogoutIcon className="icon"/>
                     <span>Logout</span>
                 </li>

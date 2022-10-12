@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         //textAlign:'left',
         alignItems:'center',
-        height: 23,
+        height: 43,
         fontStyle: 'bold',
         flexGrow:1
     },
@@ -41,10 +41,11 @@ const styles = StyleSheet.create({
 const PDFTableItem = ({items}) => {
     const rows = items.map( item => 
         <View style={styles.row} key={item.sno.toString()} wrap={false}>
-            <Text style={styles.description}>{item.desc}</Text>
-            <Text style={styles.currency}>{item.currency}</Text>
-            <Text style={styles.amount}>{item.rate.toFixed(2)}</Text>
+            <Text style={styles.description}>new{"\n"} testing</Text>
+            <Text style={styles.currency}>{item.currency}{"\n"}</Text>
+            <Text style={styles.amount}>{item.rate.toFixed(2)}{"\n"}</Text>
         </View>
+        
         
     )
     return (

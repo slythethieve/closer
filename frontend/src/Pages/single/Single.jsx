@@ -2,10 +2,9 @@ import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import InputField from '../forms/InputField';
-import TableComponent from "../../components/table/TableComponent";
 import { useLocation } from "react-router-dom";
-import { Fragment, useState } from "react";
 import unique_key from "../../utils/unique_key";
+import { Link } from "react-router-dom";
 
 
 const Single = () => {
@@ -14,6 +13,9 @@ const Single = () => {
   const location = useLocation() 
   const quote = location.state.quote
 
+
+  // Potentially I can also set this as input fields so that I can change it and then save it. 
+  // Need to think about the text area though
   const renderProducts = () => {
 
     let finalValues = []
@@ -33,7 +35,7 @@ const Single = () => {
       for(let i = 0; i < valuesGood.length; i++) {
         finalValues.push(
           <div key= {unique_key()}>
-            <span className="test">{valuesGood[i][0]}: </span>
+            <span>{valuesGood[i][0]}: </span>
             <span>{valuesGood[i][1]}</span>
           </div>
         )
@@ -44,8 +46,6 @@ const Single = () => {
   }
 
   
-
-
   return (
     <div className="single">
       <Sidebar />
@@ -53,7 +53,11 @@ const Single = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <div className="editButton">
+              <Link to={`/`}>
+                <div>Crea Fattura</div>
+              </Link>
+            </div>
             <h1 className="title">Informazioni</h1>
             <div className="item">
               <img
