@@ -1,9 +1,9 @@
 export const userColumns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "id", headerName: "ID", width: 150 },
     {
       field: "user",
       headerName: "User",
-      width: 230,
+      width: 130,
       // You can also use something like this that lets you render some html inside the cell.
         // This function for example combines the lastname and the age together. 
         //renderCell: (params) => {
@@ -17,11 +17,29 @@ export const userColumns = [
       renderCell: (params) => {
         return (
           <div className="cellWithImg">
-            <img className="cellImg" src={params.row.img} alt="avatar" />
-            {params.row.username}
+            {params.row.user}
           </div>
         );
       },
+    },
+
+    {
+      field: "address",
+      headerName: "Address",
+      width: 160,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.address}
+          </div>
+        );
+      },
+    },
+
+    {
+      field: "city",
+      headerName: "City",
+      width: 100,
     },
     {
       field: "email",
@@ -29,23 +47,8 @@ export const userColumns = [
       width: 230,
     },
   
-    {
-      field: "age",
-      headerName: "Age",
-      width: 100,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 160,
-      renderCell: (params) => {
-        return (
-          <div className={`cellWithStatus ${params.row.status}`}>
-            {params.row.status}
-          </div>
-        );
-      },
-    },
+    
+    
   ];
   
   //temporary data

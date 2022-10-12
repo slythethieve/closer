@@ -11,29 +11,38 @@ function Datatable({quote}) {
     {
       field: "action",
       headerName: "Azioni",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         const {row} = params
         return(
           <div className='cellAction'>
-            <Link to={`/orders/${row.id}`} state={{ testValue: "hello"}}>
+            <Link to={`/orders/${row.id}`} state={{ quote: filterTest(row.id)}}>
               <div className='viewButton'>Vedi dettagli</div>
             </Link>
-            
-            <div className='deleteButton'>Elimina</div>
           </div>
         )
       } 
     }
   ]
 
-  
+  // With this I can send the selected quote from the order view. 
+  const filterTest = (id) => {
+    const result = quote.filter(row => 
+      row._id === id
+    )
+    return result
+
+  }
+
+
   const test = quote.map((row) => {
     return {
       id: row._id,
-      user: row.clientInfo.firstName,
+      user: row.clientInfo.name,
       email: row.clientInfo.email,
-      age: row.clientInfo.plz
+      city: row.clientInfo.city,
+      address: row.clientInfo.address,
+
     }
   })
   return (

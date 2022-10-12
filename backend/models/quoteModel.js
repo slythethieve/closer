@@ -15,7 +15,7 @@ const quoteSchema = mongoose.Schema({
             },
             isOrder: {
                 type: Boolean,
-                default: false
+                default: true
             }
             
         },
@@ -29,7 +29,7 @@ const quoteSchema = mongoose.Schema({
             },
             isOrder: {
                 type: Boolean,
-                default: false
+                default: true
             }
         }
         

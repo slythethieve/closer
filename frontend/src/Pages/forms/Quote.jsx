@@ -204,11 +204,6 @@ const Quote = () => {
                                 })}
                                 </div>
                         ))}
-                        <div>
-                            <label>Ordine?</label>
-                            <Checkbox label ="Ordine?"></Checkbox>
-                        </div>
-                        
                     </div>
                     <input className="button" type="submit"></input>
                 </form>
