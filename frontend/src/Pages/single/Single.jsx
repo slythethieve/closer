@@ -14,33 +14,35 @@ const Single = () => {
   const quote = location.state.quote
 
   
-
-
-  // Potentially I can also set this as input fields so that I can change it and then save it. 
-  // Need to think about the text area though
   const renderProducts = () => {
 
     let finalValues = []
     if (quote[0].products.euroMoebelProducts.products) {
-      let valuesEM = Object.entries(Object.values(quote[0].products.euroMoebelProducts.products)[0])
+      let valuesEM = Object.entries(Object.values(quote[0].products.euroMoebelProducts.products))
       for(let i = 0; i < valuesEM.length; i++) {
-        finalValues.push(
+        for (let k = 0; k < Object.values(valuesEM[i][1]).length; k++) {
+          finalValues.push(
           <div key= {unique_key()}>
-            <span>{valuesEM[i][1].placeholder}: </span>
-            <span>{valuesEM[i][1].value}</span>
+            <span>{Object.values(valuesEM[i][1])[k].placeholder}: </span>
+            <span>{Object.values(valuesEM[i][1])[k].value}</span>
           </div>
         )
+        }
+        
       }
     }
      if (quote[0].products.goodlineeProducts.products) {
-       let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products)[0])
+       let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products))
        for(let i = 0; i < valuesGood.length; i++) {
-         finalValues.push(
+        for (let k = 0; k < Object.values(valuesGood[i][1]).length; k++) {
+          finalValues.push(
            <div key= {unique_key()}>
-             <span>{valuesGood[i][1].placeholder}: </span>
-             <span>{valuesGood[i][1].value}</span>
+             <span>{Object.values(valuesGood[i][1])[k].placeholder}: </span>
+             <span>{Object.values(valuesGood[i][1])[k].value}</span>
            </div>
          )
+        }
+         
        }
      }
     return finalValues

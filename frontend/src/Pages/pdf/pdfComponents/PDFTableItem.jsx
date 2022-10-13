@@ -40,6 +40,10 @@ const PDFTableItem = ({quote}) => {
     // One immediate problem is that I do not have the name of the products anymore. Another problem is how to put everything in
     // one field (I might already have a vague idea for this one)
 
+    // Ok so I have successfully fixed the first problem. 
+    // Now you need to think how to construct the array made of strings with newlines. 
+    // Each entry in this array will be a new product. 
+
     // const renderProducts = () => {
 
     //     let finalValues = []
