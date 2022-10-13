@@ -54,7 +54,7 @@ const Single = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">
-              <Link to={`/`}>
+              <Link to={`/pdf`} state={{ quote: quote}}>
                 <div>Crea Fattura</div>
               </Link>
             </div>

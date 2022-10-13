@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
 
 
   // Again some hardcoded data to test out the layout
-  const ClientDetailsColumn = () => (
+  const ClientDetailsColumn = ({quote}) => (
     <View style = {styles.container}>
-        <Text style={styles.text}>Sig. Paolo Rossi</Text>
-        <Text style={styles.text}>Stationstrasse 17</Text>
-        <Text style={styles.text}>8003 Zürich</Text>
+        <Text style={styles.text}>{quote[0].clientInfo.name}</Text>
+        <Text style={styles.text}>{quote[0].clientInfo.address}</Text>
+        <Text style={styles.text}>{quote[0].clientInfo.city}</Text>
     </View>
     );
   

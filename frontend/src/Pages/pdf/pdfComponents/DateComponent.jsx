@@ -23,11 +23,14 @@ const styles = StyleSheet.create({
 
 
   // Again some hardcoded data to test out the layout
-  const DateComponent = () => (
+  const DateComponent = () => {
+    
+    return(
     <View style = {styles.container}>
         <Text style={styles.text}>Aarburg, 22.09.2022</Text>
         
     </View>
-    );
+    )
+  }
   
   export default DateComponent

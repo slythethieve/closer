@@ -1,8 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-
-
-
+import { Page, Document, StyleSheet } from '@react-pdf/renderer';
 
 import Header from './pdfComponents/Header';
 import ClientDetailsColumn from './pdfComponents/ClientDetailsColumn';
@@ -28,12 +25,12 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-export const QuotePdf = () => (
+export const QuotePdf = ({quote}) => (
     <Document>
     <Page size="A4" style={styles.page}>
       <Header />
       <DateComponent />
-      <ClientDetailsColumn />
+      <ClientDetailsColumn quote={quote}/>
       <PDFTable />
     </Page>
   </Document>
