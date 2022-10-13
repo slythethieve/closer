@@ -13,6 +13,8 @@ const Single = () => {
   const location = useLocation() 
   const quote = location.state.quote
 
+  
+
 
   // Potentially I can also set this as input fields so that I can change it and then save it. 
   // Need to think about the text area though
@@ -24,23 +26,23 @@ const Single = () => {
       for(let i = 0; i < valuesEM.length; i++) {
         finalValues.push(
           <div key= {unique_key()}>
-            <span>{valuesEM[i][0]}: </span>
-            <span>{valuesEM[i][1]}</span>
+            <span>{valuesEM[i][1].placeholder}: </span>
+            <span>{valuesEM[i][1].value}</span>
           </div>
         )
       }
     }
-    if (quote[0].products.goodlineeProducts.products) {
-      let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products)[0])
-      for(let i = 0; i < valuesGood.length; i++) {
-        finalValues.push(
-          <div key= {unique_key()}>
-            <span>{valuesGood[i][0]}: </span>
-            <span>{valuesGood[i][1]}</span>
-          </div>
-        )
-      }
-    }
+     if (quote[0].products.goodlineeProducts.products) {
+       let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products)[0])
+       for(let i = 0; i < valuesGood.length; i++) {
+         finalValues.push(
+           <div key= {unique_key()}>
+             <span>{valuesGood[i][1].placeholder}: </span>
+             <span>{valuesGood[i][1].value}</span>
+           </div>
+         )
+       }
+     }
     return finalValues
     
   }

@@ -29,6 +29,7 @@ function Dashboard() {
 
 		dispatch(getQuotes())
 		
+		
 
 	}, [quote.length, isError, message, dispatch])
 
@@ -109,7 +110,6 @@ function Dashboard() {
 		prevMonths.push(prevMonth4)
 		prevMonths.push(prevMonth5)
 		prevMonths.push(prevMonth6)
-
 		return prevMonths
 	}
 
@@ -151,7 +151,8 @@ function Dashboard() {
 			for (let j = 0; j < goodlineeEntriesSortedByDates[i].length; j++) {
 				if(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.isOrder) {
 					for (let k = 0; k < Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products).length; k++) {
-					tempTotal = tempTotal + (Number(Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products)[k].price) || 0)
+					tempTotal = tempTotal + (Number(Object.values(goodlineeEntriesSortedByDates[i][j].products.goodlineeProducts.products)[k].price.value) || 0)
+					
 					}
 				}
 			}
@@ -169,7 +170,7 @@ function Dashboard() {
 			for (let j = 0; j < euroMoebelEntriesSortedByDates[i].length; j++) {
 				if(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.isOrder) {
 					for (let k = 0; k < Object.values(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.products).length; k++) {
-					tempTotal = tempTotal + (Number(Object.values(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.products)[k].price) || 0)
+					tempTotal = tempTotal + (Number(Object.values(euroMoebelEntriesSortedByDates[i][j].products.euroMoebelProducts.products)[k].price.value) || 0)
 					}
 				}
 			}
@@ -180,49 +181,6 @@ function Dashboard() {
 	}
 
 	
-	// I want to try and calculate the number of offers that belong to one company or the other
-
-	// So I think I made it work. just need to change the length. if one offer has 3 products
-	// it does not count as 3 offers but just one. D'uh. 
-	const test = (quote) => {
-
-
-		let k = 0
-		for (let i = 0; i < quote.length; i++) {
-		try {
-			for (let j = 0; j < Object.values(quote[i].products.goodlineeProducts.products).length; j++) {
-
-			if(quote[i].products.goodlineeProducts.isOrder === false) {
-				k++
-			}
-			//console.log(Object.values(quote[i].products.goodlineeProducts.products))
-			//console.log(k)
-			
-
-			}
-		} catch (error) {
-
-		}
-
-		}
-
-		return k;
-
-
-	}
-
-	// Total revenue. With the new db schema I also need to change this one. 
-	const calculateTotal = (quote) => {
-		let totalRev = 0
-		for (let i = 0; i < quote.length; i++) {
-		for (let j = 0; j < Object.values(quote[i].products).length; j++) {
-
-			totalRev = totalRev + (Number(Object.values(quote[i].products)[j].price) || 0)
-
-		}
-		}
-		setTotal(totalRev)
-	}
 
 
 	return (

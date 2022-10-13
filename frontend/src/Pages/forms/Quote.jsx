@@ -124,7 +124,7 @@ const Quote = () => {
     const dispatch = useDispatch()
 
     const onSubmit = (event) => {
-        event.preventDefault()
+        //event.preventDefault()
 
         let quoteData = {}
         let clientInfoData = {}
@@ -149,13 +149,21 @@ const Quote = () => {
                 if (value[5]==="euroMoebel") {
                     euroMoebelProducts.products[`product_${i}_${value[4]}`] = {
                         ...euroMoebelProducts.products[`product_${i}_${value[4]}`], ...{
-                            [key]: value[0]
+                            [key]: {
+                                "value": value[0],
+                                "placeholder": value[2],
+                                "productName": value[6]
+                            }
                         }
                     }
                 }else {
                     goodlineeProducts.products[`product_${i}_${value[4]}`] = {
                         ...goodlineeProducts.products[`product_${i}_${value[4]}`], ...{
-                            [key]: value[0]
+                            [key]: {
+                                "value": value[0],
+                                "placeholder": value[2],
+                                "productName": value[6]
+                            }
                         }
                     }
                 }
@@ -163,7 +171,7 @@ const Quote = () => {
         }
 
         let status = "offer"
-        let isOrder = false
+        let isOrder = true
         euroMoebelProducts["status"] = status
         euroMoebelProducts["isOrder"] = isOrder
         goodlineeProducts["status"] = status

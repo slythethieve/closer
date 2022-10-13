@@ -31,7 +31,7 @@ export const QuotePdf = ({quote}) => (
       <Header />
       <DateComponent />
       <ClientDetailsColumn quote={quote}/>
-      <PDFTable />
+      <PDFTable quote={quote}/>
     </Page>
   </Document>
 

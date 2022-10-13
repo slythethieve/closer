@@ -245,10 +245,10 @@ const styles = StyleSheet.create({
 
 
   // Again some hardcoded data to test out the layout
-  const PDFTable = () => (
+  const PDFTable = ({quote}) => (
     <View style = {styles.tableContainer} >
         <PDFTableHeader />
-        <PDFTableItem items={items}/>
+        <PDFTableItem quote={quote}/>
         <PDFTableFooter />
     </View>
     );
