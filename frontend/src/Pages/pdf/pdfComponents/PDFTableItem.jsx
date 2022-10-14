@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
+import unique_key from '../../../utils/unique_key';
 
 const borderColor = 'black'
 const styles = StyleSheet.create({
@@ -36,54 +37,34 @@ const styles = StyleSheet.create({
 
 const PDFTableItem = ({quote}) => {
 
-    // So let's think this through. The first thing I need here is take the product description outside of the quote object
-    // One immediate problem is that I do not have the name of the products anymore. Another problem is how to put everything in
-    // one field (I might already have a vague idea for this one)
+    // TODO:
+    // An easy way to make this better already would be to put all these functions and therefore values in the higher order 
+    // components, instead of having duplication scattered on these lower levels.
+    //
+    const productStringsArray = []
 
-    // Ok so I have successfully fixed the first problem. 
-    // Now you need to think how to construct the array made of strings with newlines. 
-    // Each entry in this array will be a new product. 
+    
+    for (let i = 0; i < Object.values(quote[0].products.euroMoebelProducts.products).length; i++) {
+        let string = ""
+        string = string + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[0].productName + "\n"
+        for (let j = 0; j < Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length; j++) {
+            string = string + "  - " + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].placeholder + ": " + "\n"
+        }
+        productStringsArray.push(string)
 
-    // const renderProducts = () => {
-
-    //     let finalValues = []
-    //     if (quote[0].products.euroMoebelProducts.products) {
-    //       let valuesEM = Object.entries(Object.values(quote[0].products.euroMoebelProducts.products)[0])
-    //       for(let i = 0; i < valuesEM.length; i++) {
-    //         finalValues.push(
-    //           <div key= {unique_key()}>
-    //             <span>{valuesEM[i][0]}: </span>
-    //             <span>{valuesEM[i][1]}</span>
-    //           </div>
-    //         )
-    //       }
-    //     }
-    //     if (quote[0].products.goodlineeProducts.products) {
-    //       let valuesGood = Object.entries(Object.values(quote[0].products.goodlineeProducts.products)[0])
-    //       for(let i = 0; i < valuesGood.length; i++) {
-    //         finalValues.push(
-    //           <div key= {unique_key()}>
-    //             <span>{valuesGood[i][0]}: </span>
-    //             <span>{valuesGood[i][1]}</span>
-    //           </div>
-    //         )
-    //       }
-    //     }
-    //     return finalValues
+    }
+    console.log(productStringsArray)
+     const rows = productStringsArray.map( item => 
+         <View style={styles.row} key={unique_key()} wrap={false}>
+             <Text style={styles.description}>{item}</Text>
+             <Text style={styles.currency}>CHF</Text>
+             <Text style={styles.amount}>100</Text>
+         </View>
         
-    //   }
-    // const rows = quote[0].map( item => 
-    //     <View style={styles.row} key={item.sno.toString()} wrap={false}>
-    //         <Text style={styles.description}>new{"\n"} testing</Text>
-    //         <Text style={styles.currency}>{item.currency}{"\n"}</Text>
-    //         <Text style={styles.amount}>{item.rate.toFixed(2)}{"\n"}</Text>
-    //     </View>
-        
-        
-    // )
-    console.log(quote[0])
+     )
+    
     return (
-        <Fragment>{}</Fragment>
+        <Fragment>{rows}</Fragment>
     )
 };
   
