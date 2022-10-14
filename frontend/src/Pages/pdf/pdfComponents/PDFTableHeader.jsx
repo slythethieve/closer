@@ -11,15 +11,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#8EA9DB',
         alignItems: 'center',
-        height: 23,
+        fontSize: 11,
         textAlign: 'left',
         borderColor: 'black',
         borderWidth: 1,
-        fontStyle: 'bold',
+    
         flexGrow: 1,
     },
     description: {
-        width: '60%',
+        width: '75%',
         borderRightColor: 'black',
         borderRightWidth: 1,
         textAlign: 'left',

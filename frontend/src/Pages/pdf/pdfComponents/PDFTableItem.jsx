@@ -1,21 +1,21 @@
 import React, {Fragment} from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
 import unique_key from '../../../utils/unique_key';
+import { useState } from 'react';
 
 const borderColor = 'black'
 const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         borderColor: 'black',
-        borderWidth: 1,
-        //textAlign:'left',
+        borderWidth:1,
         alignItems:'center',
-        //height: 63,
+        fontSize: 11,
         fontStyle: 'bold',
         flexGrow:1
     },
     description: {
-        width: '60%',
+        width: '75%',
         textAlign: 'left',
         borderRightColor: borderColor,
         borderRightWidth: 1,
@@ -42,23 +42,36 @@ const PDFTableItem = ({quote}) => {
     // components, instead of having duplication scattered on these lower levels.
     //
     const productStringsArray = []
+    let descriptionString
+    let currencyString
+    let priceString
+
 
     
     for (let i = 0; i < Object.values(quote[0].products.euroMoebelProducts.products).length; i++) {
-        let string = ""
-        string = string + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[0].productName + "\n"
+        descriptionString = ""
+        priceString = ""
+        currencyString = ""
+        descriptionString = descriptionString + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[0].productName + "\n"
+        priceString = priceString + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length-1].value
+        currencyString = "CHF" + "\n"
+        priceString = priceString + "\n"
         for (let j = 0; j < Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length; j++) {
-            string = string + "  - " + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].placeholder + ": " + "\n"
+            descriptionString = descriptionString + "  - " + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].placeholder + ": " +
+            Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].value + "\n"
+            currencyString = currencyString + "\n"
+            priceString = priceString + "\n"
         }
-        productStringsArray.push(string)
+        productStringsArray.push(descriptionString)
 
     }
+
     console.log(productStringsArray)
      const rows = productStringsArray.map( item => 
          <View style={styles.row} key={unique_key()} wrap={false}>
              <Text style={styles.description}>{item}</Text>
-             <Text style={styles.currency}>CHF</Text>
-             <Text style={styles.amount}>100</Text>
+             <Text style={styles.currency}>{currencyString}</Text>
+             <Text style={styles.amount}>{priceString}</Text>
          </View>
         
      )
