@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { createQuote} from '../../features/quote/quoteSlice';
+import { useNavigate } from "react-router-dom"
 import Sidebar from '../../components/sidebar/Sidebar'
 import TextArea from './TextArea';
 import InputField from './InputField';
@@ -122,6 +123,7 @@ const Quote = () => {
     }
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const onSubmit = (event) => {
         //event.preventDefault()
@@ -183,6 +185,7 @@ const Quote = () => {
         quoteData["clientInfo"] = clientInfoData
         quoteData["products"] = productsInfoData
         dispatch(createQuote(quoteData))
+        navigate('/')
         
     }
 

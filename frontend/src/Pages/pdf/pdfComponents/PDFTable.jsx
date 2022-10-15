@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     <View style = {styles.tableContainer} >
         <PDFTableHeader />
         <PDFTableItem quote={quote}/>
-        <PDFTableFooter />
+        <PDFTableFooter quote={quote}/>
     </View>
     );
   

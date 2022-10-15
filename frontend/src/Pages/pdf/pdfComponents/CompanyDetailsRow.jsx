@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     titleContainer:{
         flexDirection: 'column',
         marginTop: 12,
+        fontSize:11
 
         
         

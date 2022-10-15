@@ -1,12 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
 
-
-//const borderColor = 'blue'
 const styles = StyleSheet.create({
-   
-    
-    
     container: {
         flexDirection: 'row',
         backgroundColor: '#8EA9DB',
@@ -40,14 +35,23 @@ const styles = StyleSheet.create({
     },
   });
 
+const PDFTableFooter = ({quote}) => {
 
-  // Again some hardcoded data to test out the layout
-  const PDFTableFooter = () => (
-    <View style = {styles.container}>
-        <Text style={styles.description}>Totale</Text>
-        <Text style={styles.currency}>CHF</Text>
-        <Text style={styles.amount}>Totale</Text>
-    </View>
-    );
+    let total = 0
+
+    // TODO: Goodlinee part still missing. 
+    for (let i = 0; i < Object.values(quote[0].products.euroMoebelProducts.products).length; i++) {
+        
+        total = total + (Number(Object.values(quote[0].products.euroMoebelProducts.products)[i].price.value) || 0)
+    }
+    
+    return (
+        <View style = {styles.container}>
+            <Text style={styles.description}>Totale</Text>
+            <Text style={styles.currency}>CHF</Text>
+            <Text style={styles.amount}>{total}</Text>
+        </View>
+    )
+}
   
-  export default PDFTableFooter
+export default PDFTableFooter

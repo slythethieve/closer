@@ -13,10 +13,6 @@ function Dashboard() {
 
 	const dispatch = useDispatch()
 
-	// Change these names to better ones.
-	// In fact let's have a bunch of useState here. Just make sure to not spread the result. Just assign at the end of the functions you have already implemented. 
-	const [total, setTotal] = useState(0)
-	const [numberOfClients, setNumberOfClients] = useState(0)
 
 	const { quote, isLoading, isError, message } = useSelector((state) =>
 		state.quotes)
@@ -179,8 +175,6 @@ function Dashboard() {
 
 		return pastRevenue6Months
 	}
-
-	
 
 
 	return (

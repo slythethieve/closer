@@ -16,7 +16,7 @@ Font.register({
 const styles = StyleSheet.create({
 
   page: {
-    fontFamily: 'Courier',
+    fontFamily: 'Helvetica',
     fontSize: 11,
     paddingTop: 40,
     paddingLeft:40,

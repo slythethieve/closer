@@ -1,4 +1,4 @@
-import logo from '../../../logo.png'
+import logo from '../../../euroLogo.png'
 
 import React from 'react';
 import {Text, View, StyleSheet, Image } from '@react-pdf/renderer';
@@ -6,8 +6,8 @@ import {Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 const styles = StyleSheet.create({
    
     logo:  {
-        width: 90,
-        height: 90,
+        width: 75,
+        height: 75,
         
               
     },

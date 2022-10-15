@@ -47,7 +47,7 @@ const PDFTableItem = ({quote}) => {
     let priceString
 
 
-    
+    // TODO: Goodlinee part still missing. 
     for (let i = 0; i < Object.values(quote[0].products.euroMoebelProducts.products).length; i++) {
         descriptionString = ""
         priceString = ""
@@ -56,7 +56,7 @@ const PDFTableItem = ({quote}) => {
         priceString = priceString + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length-1].value
         currencyString = "CHF" + "\n"
         priceString = priceString + "\n"
-        for (let j = 0; j < Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length; j++) {
+        for (let j = 0; j < Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i]).length-1; j++) {
             descriptionString = descriptionString + "  - " + Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].placeholder + ": " +
             Object.values(Object.values(quote[0].products.euroMoebelProducts.products)[i])[j].value + "\n"
             currencyString = currencyString + "\n"
@@ -66,7 +66,6 @@ const PDFTableItem = ({quote}) => {
 
     }
 
-    console.log(productStringsArray)
      const rows = productStringsArray.map( item => 
          <View style={styles.row} key={unique_key()} wrap={false}>
              <Text style={styles.description}>{item}</Text>
