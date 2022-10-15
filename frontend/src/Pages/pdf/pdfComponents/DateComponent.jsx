@@ -1,12 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
-import Logo from './Logo';
-import { style } from '@mui/system';
+
 
 const styles = StyleSheet.create({
-   
-    
-    
     container: {
         flexDirection: 'column',
         alignItems: 'flex-end',
@@ -19,19 +15,17 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         textTransform: 'uppercase',
     }
-  });
+});
 
 
-  // Again some hardcoded data to test out the layout
-  const DateComponent = () => {
+const DateComponent = () => {
     const date = new Date()
     const localDate = date.toLocaleDateString()
     return(
-    <View style = {styles.container}>
-        <Text style={styles.text}>Aarburg, {localDate}</Text>
-        
-    </View>
+        <View style = {styles.container}>
+            <Text style={styles.text}>Aarburg, {localDate}</Text>
+        </View>
     )
-  }
+}
   
-  export default DateComponent
+export default DateComponent

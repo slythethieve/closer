@@ -3,38 +3,38 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
 import Datatable from '../../components/datatable/Datatable'
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 import { getQuotes } from '../../features/quote/quoteSlice';
 
 function List() {
 
-  const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-  const { quote, isLoading, isError, message } = useSelector((state) =>
-		state.quotes)
+	const { quote, isLoading, isError, message } = useSelector((state) =>
+			state.quotes)
 
-	useEffect(() => {
+		useEffect(() => {
 
-		if (isError) {
-		console.log(message)
-		}
+			if (isError) {
+			console.log(message)
+			}
 
-		dispatch(getQuotes())
-		
+			dispatch(getQuotes())
+			
 
-	}, [quote.length, isError, message, dispatch])
+		}, [quote.length, isError, message, dispatch])
 
-  
+	
 
-  return (
-    <div className='list'>
-        <Sidebar />
-        <div className='listContainer'>
-            <Navbar />
-            <Datatable quote={quote}/>
-        </div>
-    </div>
-  )
+	return (
+		<div className='list'>
+			<Sidebar />
+			<div className='listContainer'>
+				<Navbar />
+				<Datatable quote={quote}/>
+			</div>
+		</div>
+	)
 }
 
 export default List

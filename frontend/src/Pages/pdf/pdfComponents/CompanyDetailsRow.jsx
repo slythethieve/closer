@@ -19,13 +19,9 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         
     }
-  });
+});
 
-  // For now I'm just going to hardcode some of it.
-  // Later I will make these contact fields dynamic
-  // But for that I need to adjust my db model again 
-  // slightly. 
-  const CompanyDetailsRow = () => (
+const CompanyDetailsRow = () => (
     <View style={styles.titleContainer}>
         <Text style={styles.reportTitle}>Euro Möbel New Line GmbH</Text>
         <Text style={styles.reportTitle}>De Sabato Cosiano</Text>
@@ -33,6 +29,6 @@ const styles = StyleSheet.create({
         <Text style={styles.reportTitle}>4663 Aarburg</Text>
         <Text style={styles.reportTitle}>CHE-114.608.208</Text>
     </View>
-  );
+);
   
-  export default CompanyDetailsRow
+export default CompanyDetailsRow

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         
     },
-  });
+});
 
 const PDFTableFooter = ({quote}) => {
 

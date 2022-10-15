@@ -17,16 +17,16 @@ export const createQuote = createAsyncThunk('quotes/create',
             return await quoteService.createQuote(quoteData, token)
           } catch (error) {
             const message =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString()
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString()
             return thunkAPI.rejectWithValue(message)
           }
     })
 
-  export const getQuotes = createAsyncThunk('quotes/getAll', async (_, thunkAPI) => {
+export const getQuotes = createAsyncThunk('quotes/getAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await quoteService.getQuotes(token)
@@ -43,43 +43,43 @@ export const createQuote = createAsyncThunk('quotes/create',
 
   
 
-  export const quoteSlice = createSlice({
-        name: 'quote',
-        initialState,
-        reducers: {
-          reset: (state) => initialState,
-        },
-        extraReducers: (builder) => {
-          builder
-            .addCase(createQuote.pending, (state) => {
-              state.isLoading = true
-            })
-            .addCase(createQuote.fulfilled, (state, action) => {
-              state.isLoading = false
-              state.isSuccess = true
-              state.quote.push(action.payload)
-            })
-            .addCase(createQuote.rejected, (state, action) => {
-              state.isLoading = false
-              state.isError = true
-              state.message = action.payload
-            })
-            .addCase(getQuotes.pending, (state) => {
-              state.isLoading = true
-              
-          })
-          .addCase(getQuotes.fulfilled, (state, action) => {
-              state.isLoading = false
-              state.isSuccess = true
-              state.quote = action.payload
-          })
-          .addCase(getQuotes.rejected, (state, action) => {
-              state.isLoading = false
-              state.isError = true
-              state.message = action.payload
+export const quoteSlice = createSlice({
+	name: 'quote',
+	initialState,
+	reducers: {
+		reset: (state) => initialState,
+	},
+	extraReducers: (builder) => {
+		builder
+		.addCase(createQuote.pending, (state) => {
+			state.isLoading = true
+		})
+		.addCase(createQuote.fulfilled, (state, action) => {
+			state.isLoading = false
+			state.isSuccess = true
+			state.quote.push(action.payload)
+		})
+		.addCase(createQuote.rejected, (state, action) => {
+			state.isLoading = false
+			state.isError = true
+			state.message = action.payload
+		})
+		.addCase(getQuotes.pending, (state) => {
+			state.isLoading = true
+			
+		})
+		.addCase(getQuotes.fulfilled, (state, action) => {
+			state.isLoading = false
+			state.isSuccess = true
+			state.quote = action.payload
+		})
+		.addCase(getQuotes.rejected, (state, action) => {
+			state.isLoading = false
+			state.isError = true
+			state.message = action.payload
 
-          })
-        }
-    })
+		})
+	}
+})
 export default quoteSlice.reducer
 export const {reset} = quoteSlice.actions

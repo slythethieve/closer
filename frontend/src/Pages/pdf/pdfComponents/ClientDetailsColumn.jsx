@@ -1,11 +1,9 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
-import Logo from './Logo';
+
 
 const styles = StyleSheet.create({
    
-    
-    
     container: {
         flexDirection: 'column',
         alignItems: 'flex-end',
@@ -20,8 +18,6 @@ const styles = StyleSheet.create({
     }
   });
 
-
-  // Again some hardcoded data to test out the layout
   const ClientDetailsColumn = ({quote}) => (
     <View style = {styles.container}>
         <Text style={styles.text}>{quote[0].clientInfo.name}</Text>

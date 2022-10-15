@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
         marginTop: 24,
         
     },
-  });
+});
 
-  const PDFTable = ({quote}) => (
+const PDFTable = ({quote}) => (
     <View style = {styles.tableContainer} >
         <PDFTableHeader />
         <PDFTableItem quote={quote}/>
         <PDFTableFooter quote={quote}/>
     </View>
-    );
+);
   
-  export default PDFTable
+export default PDFTable

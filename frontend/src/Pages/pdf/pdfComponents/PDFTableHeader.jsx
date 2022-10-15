@@ -1,12 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
 
-
-//const borderColor = 'blue'
 const styles = StyleSheet.create({
-   
-    
-    
     container: {
         flexDirection: 'row',
         backgroundColor: '#8EA9DB',
@@ -15,7 +10,6 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         borderColor: 'black',
         borderWidth: 1,
-    
         flexGrow: 1,
     },
     description: {
@@ -34,18 +28,16 @@ const styles = StyleSheet.create({
     amount: {
         width: '15%',
         paddingLeft: 10,
-        
     },
-  });
+});
 
 
-  // Again some hardcoded data to test out the layout
-  const PDFTableHeader = () => (
+const PDFTableHeader = () => (
     <View style = {styles.container}>
         <Text style={styles.description}>Descrizione</Text>
         <Text style={styles.currency}>CHF</Text>
         <Text style={styles.amount}>Totale</Text>
     </View>
-    );
+);
   
-  export default PDFTableHeader
+export default PDFTableHeader

@@ -7,8 +7,7 @@ import TextArea from './TextArea';
 import InputField from './InputField';
 import './form.scss'
 import './quote.scss'
-
-// TODO: eliminate prevent default and also use useNavigate to move back to dashboard once submitted. 
+ 
 
 const Quote = () => {
     
