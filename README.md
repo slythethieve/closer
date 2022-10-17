@@ -32,14 +32,15 @@ Database
 
 - MongoDB (MongoDB Atlas)
 
-## Author
-
-Matteo De Sabato
-
 ## Features
 
 - Summirize orders for the products on measure offered by the family business
 - Dashboard view complete with the most important analytics (Revenue, Numbers of offers/contracts)
 - Page with all clients in the database
 - Ability to generate an invoice based on client data.
+
+## Author
+
+Matteo De Sabato
+
 
